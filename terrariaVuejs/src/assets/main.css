@@ -1,35 +1,14 @@
-@import './base.css';
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-
-  font-weight: normal;
+/* charte graphique */
+:root {
+  --bg-sky:  #A2D5C6;
+  --bg-aqua: #077B8A; 
+  --bg-ocean: #034a53; 
+  --bg-purple: #5C3C92;
+  --txt-red: #D72631;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-}
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+body{
+  background-color: var(--bg-ocean);
+  margin: 0;
 }

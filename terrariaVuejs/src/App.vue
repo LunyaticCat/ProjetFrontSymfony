@@ -1,47 +1,72 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
+<head>
+    <meta charset="UTF-8">
+    <title>Terraria Vuejs</title>
 
-  <main>
-    <TheWelcome />
-  </main>
+</head>
+
+<body>
+    <header>
+        <h1>Logo carre</h1>
+        <nav>
+        <a href="#section1">Ma page 1</a>
+        <a href="#section2">Tous les items 2</a>
+        <a href="#section3">S'inscrire 3</a>
+        <a href="#section4">Se connecter 4</a>
+    </nav>
+    </header>
+
+</body>
+
+
 </template>
 
+
+
 <style scoped>
-header {
-  line-height: 1.5;
-}
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
   header {
+    background-color: var(--bg-purple);
+    position: sticky;
+    top: 0;
     display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-content: center;
+    justify-content: flex-start;
 }
+
+  header h1{
+    margin: 10px;
+    text-align: center;
+    color: var(--txt-red);
+    text-shadow: 1px 1px 6px black;
+  }
+
+  header nav {
+    display: flex;
+    background-color: var(--bg-purple);
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    }
+
+    header nav a{
+      color: black;
+
+    }
+
+
+  nav a:hover {
+    background-color: #e64747;
+    color: black;
+  }
+
+
 </style>
