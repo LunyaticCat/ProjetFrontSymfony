@@ -1,6 +1,5 @@
 
-composer require api
-composer require symfony/maker-bundle --dev
+cd terrariaVuejs
+npm install
 
-
-echo "Il est possible que le pdo ne soit pas trouvé, voir sur le projet API"
+npm run dev
