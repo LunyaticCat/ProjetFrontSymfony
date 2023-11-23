@@ -2,9 +2,14 @@
 defineProps<{
   msg: string
 }>()
+
+
 </script>
 
 <template>
+  <div>
+    test
+  </div>
   <div class="greetings">
     <h1 class="green">{{ msg }}</h1>
     <h3>
@@ -23,8 +28,14 @@ h1 {
   top: -10px;
 }
 
+div {
+  background-color: red;
+}
+
 h3 {
   font-size: 1.2rem;
+  background-color: aliceblue;
+  border: 2px solid black;
 }
 
 .greetings h1,

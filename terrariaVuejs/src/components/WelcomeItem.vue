@@ -1,5 +1,6 @@
 <template>
   <div class="item">
+    aaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbb
     <i>
       <slot name="icon"></slot>
     </i>
@@ -17,6 +18,11 @@
   margin-top: 2rem;
   display: flex;
   position: relative;
+}
+
+div{
+  background-color: aliceblue;
+  border: 2px solid black;
 }
 
 .details {

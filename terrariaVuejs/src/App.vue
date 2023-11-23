@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import ListUsersVue from './components/ListUsers.vue';
+
 
 </script>
 
@@ -21,6 +23,7 @@
     </nav>
     </header>
 
+    <ListUsersVue></ListUsersVue>
 </body>
 
 
