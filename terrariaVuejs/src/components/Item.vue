@@ -1,5 +1,8 @@
 <script setup lang="ts">
 
+const carac = defineProps<{
+  id: number
+}>();
 
 const click = function() {
   console.log("AAAAAAAAAAAAAAAAAAAAAAAAA");
@@ -15,7 +18,7 @@ let rick = "Roll";
 
     <section id="item">
         <div>
-            Sert à afficher 1 item
+            Voici l'item numéro {{ id }}
         </div>
     </section>
 
