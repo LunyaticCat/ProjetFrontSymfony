@@ -1,31 +1,36 @@
 <script setup lang="ts">
+import Item from './components/Item.vue';
+import ItemHierarchy from './components/Itemhierarchy.vue';
+import ItemPage from './components/ItemsPage.vue';
+import ItemsPage from './components/ItemsPage.vue';
 import ListUsersVue from './components/ListUsers.vue';
+let menu2 = "#Menu2"
 
 
+const click = function() {
+  console.log("AAAAAAAAAAAAAAAAAAAAAAAAA");
+}
 </script>
 
 <template>
-
 <head>
     <meta charset="UTF-8">
     <title>Terraria Vuejs</title>
 
 </head>
 
-<body>
+
     <header>
         <h1>Logo carre</h1>
         <nav>
-        <a href="#section1">Ma page 1</a>
-        <a href="#section2">Tous les items 2</a>
-        <a href="#section3">S'inscrire 3</a>
-        <a href="#section4">Se connecter 4</a>
+        <a href="#section1">My page 1</a>
+        <a v-bind:href="menu2">Menu 2</a>
+        <a href="#section3" v-on:click="click">Login</a>
+        <a href="#section4">Connect 4</a>
     </nav>
     </header>
 
-    <ListUsersVue></ListUsersVue>
-</body>
-
+    <ItemHierarchy></ItemHierarchy>
 
 </template>
 
@@ -63,6 +68,10 @@ import ListUsersVue from './components/ListUsers.vue';
     header nav a{
       color: black;
 
+    }
+
+    body{
+      display: block;
     }
 
 
