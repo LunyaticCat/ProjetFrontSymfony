@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Item from './Item.vue';
+import RecursivItem from './RecursivItem.vue';
 
 let name = "Name";
 let soul = "Not owned";
@@ -43,6 +44,13 @@ let crafts = [
   {"idCraft": 2, "idResult": 2}
 ];
 
+
+let itemsOrdererCraft0= getItemAndHisChildrens(items[0]);
+
+console.log("itemsOrdererCraft0");
+console.log(itemsOrdererCraft0);
+console.log("-----------------");
+
 /**
  * Met en forme les données de sorte à avoir une architecture simple à afficher :
  * [ //Tableau lignes
@@ -62,7 +70,7 @@ function formatCrafts(){
 
 /**
  * Renvoie tous les items composants un craft ainsi que les crafts les composant récursivement
- * getItemsFromCraftRecursiv = 
+ * getItemAndHisChildrens = 
  * {
  * 
  *  "item": ITEM,
@@ -84,29 +92,42 @@ function formatCrafts(){
  *  []
  * ]
  */
-  function getItemsFromCraftRecursiv(craft: any){
-    console.log("aaaaaaaaaaaaaaaaaaaaaaaa");
-    if(craft===null) {
-      return []
+  function getItemAndHisChildrens(item: any){
+    if(item===null) {
+      return null
     }
     let itemsOrder = new Map();
     let j=0;
+    itemsOrder.set("item", item);
+    const childrens = [];
 
+    //On récupère le craft lié à l'item
+    let craft = getCraftOfItem(item);
+    if(craft===null){
+      itemsOrder.set("childrens", []);
+    }
+    else{
+      //On va chercher les parents du craft
+      let groups = getGroupsFromCraft(craft);
 
-    for(let i=0; i<itemGroups.length; i++){
-      if(itemGroups[i].idCraft===craft.idCraft){
-        var item = items[groupFragments[itemGroups[i].idGroup].idItem];
-        itemsOrder.set("item", item);
-
-        const childrenCraft = getCraftOfItem(item); //On récupere les enfants de l'item
-          itemsOrder.set("childrens", getItemsFromCraftRecursiv(childrenCraft));
-        
-        // items[] = items[i];
+      for(let i in groups){
+        const childItem = getFirstItemFromGroup(groups[i]); //TODO : A changer : ne prend pas en compte les 'OU'
+        childrens[j] = getItemAndHisChildrens(childItem);
         j++;
       }
+
+      itemsOrder.set("childrens", childrens);
+      // for(let i=0; i<itemGroups.length; i++){
+      //   if(itemGroups[i].idCraft===craft.idCraft){
+      //     let item = items[groupFragments[itemGroups[i].idGroup].idItem];
+      //     itemsOrder.set("item", item);
+      //     const childrenCraft = getCraftOfItem(item); //On récupere les enfants de l'item
+      //       itemsOrder.set("childrens", getItemAndHisChildrens(childrenCraft));
+      //     // items[] = items[i];
+      //     j++;
+        // }
     }
-    console.log("itemsOrder");
-    console.log(itemsOrder);
+
     return itemsOrder;
   }
 
@@ -191,12 +212,13 @@ function getMaxNbGeneration(craft: any): number{
 <template>
     <main>
       <section>
-        <Item v-bind:id="baseItemId"></Item>
-        test
-      
+        <!-- <Item v-bind:idItem="baseItemId"></Item> -->
+          <RecursivItem :items="itemsOrdererCraft0" :index="0"></RecursivItem>
         <!-- Deuxième version -->
 
-      <section v-for="group in getItemsFromCraftRecursiv(crafts[0])">
+      <!-- <section v-for="group in getItemAndHisChildrens(crafts[0])"> -->
+
+      <section>
 
       </section>
       </section>
@@ -212,20 +234,20 @@ function getMaxNbGeneration(craft: any): number{
       <!-- Première version : Pas ouf -->
 
             <!-- Séparateur par niveau d'héritage -->
-      <section v-for="craft in crafts">
+      <!-- <section v-for="craft in crafts">
 
 
-         <!-- Séparateur par crafts -->
-          <div class="groupContener" v-for="group in getGroupsFromCraft(craft)">
+         Séparateur par crafts -->
+          <!-- <div class="groupContener" v-for="group in getGroupsFromCraft(craft)"> -->
             
             <!-- Différents items -->
-            <div class="itemContener" >
+            <!-- <div class="itemContener" > -->
               
-              <Item v-bind:id="getFirstItemFromGroup(group).idItem"></Item>
-            </div>
+              <!-- <Item v-bind:idItem="getFirstItemFromGroup(group).idItem"></Item> -->
+            <!-- </div> -->
             
-          </div>
-      </section>
+          <!-- </div> -->
+      <!-- </section> -->
   </main>
 </template>
 

@@ -1,16 +1,10 @@
 <script setup lang="ts">
 
 const carac = defineProps<{
-  id: number
+  idItem: number
 }>();
+console.log(carac.idItem);
 
-const click = function() {
-  console.log("AAAAAAAAAAAAAAAAAAAAAAAAA");
-}
-
-let name = "Name";
-let soul = "Not owned";
-let rick = "Roll";
 
 </script>
 
@@ -18,7 +12,7 @@ let rick = "Roll";
 
     <section id="item">
         <div>
-            Voici l'item numéro {{ id }}
+            Voici l'item numéro {{ idItem }}
         </div>
     </section>
 
