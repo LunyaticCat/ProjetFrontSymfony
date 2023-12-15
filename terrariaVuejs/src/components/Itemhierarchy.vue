@@ -38,27 +38,83 @@ let itemGroups = [
 ];
 
 let crafts = [
-  {"idCraft": 0, "idResult": 0},
+  {"idCraft": 0, "idResult": 1},
   {"idCraft": 1, "idResult": 3},
   {"idCraft": 2, "idResult": 2}
 ];
 
-function childOf(idCraft: any){ //TODO : Mettre en integer l'argument
-
-  let itemsReturn = [];
-  let j=0;
+/**
+ * Met en forme les données de sorte à avoir une architecture simple à afficher :
+ * [ //Tableau lignes
+ *  [ //groupes de crafts (Pour chaque craft à cette génération) 
+ *  [
+ *    //Items
+ *   ],
+ *  []
+ *  ],
+ *  []
+ * ]
+ */
+function formatCrafts(){
+  let itemsToShow = [];
   
-  for (let i=0; i<itemGroups.length; i++){
-    if(itemGroups[i].idCraft===idCraft){
-      itemsReturn[j] = itemGroups[i];
-      j++;
-    }
-  }
-  console.log("itemGroups");
-  console.log(itemsReturn);
-  return itemsReturn;
-};
+}
 
+/**
+ * Renvoie tous les items composants un craft ainsi que les crafts les composant récursivement
+ * getItemsFromCraftRecursiv = 
+ * {
+ * 
+ *  "item": ITEM,
+ *  "enfants":{
+ *    "item": ITEM_PARENT,
+ *    "enfants": null
+ *  }, 
+ *  {
+ *    "item": ITEM_PRENT2,
+ *    "enfants": {
+ *      "item": "ITEM_ANCETRE",
+ *      "enfants": null
+ *    }
+ *  }
+ * }
+ * 
+ * [
+ *  
+ *  []
+ * ]
+ */
+  function getItemsFromCraftRecursiv(craft: any){
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaa");
+    if(craft===null) {
+      return []
+    }
+    let itemsOrder = new Map();
+    let j=0;
+
+
+    for(let i=0; i<itemGroups.length; i++){
+      if(itemGroups[i].idCraft===craft.idCraft){
+        var item = items[groupFragments[itemGroups[i].idGroup].idItem];
+        itemsOrder.set("item", item);
+
+        const childrenCraft = getCraftOfItem(item); //On récupere les enfants de l'item
+          itemsOrder.set("childrens", getItemsFromCraftRecursiv(childrenCraft));
+        
+        // items[] = items[i];
+        j++;
+      }
+    }
+    console.log("itemsOrder");
+    console.log(itemsOrder);
+    return itemsOrder;
+  }
+
+
+/**
+ * Donne tous les groupes necessaire à un craft
+ * @param craft un craft
+ */
 function getGroupsFromCraft(craft: any){
   const groupsReturn = [];
   let j=0;
@@ -113,20 +169,20 @@ function getFirstItemFromGroup(group: any){
  * 
  * @param item 
  */
-function getCraftOfItem(item){
+function getCraftOfItem(item: any){
 
   for(let i=0; i<crafts.length; i++){
     if(crafts[i].idResult==item.idItem){
       return crafts[i];
     }
   }
-  throw new Error("No craft found for this item");
+  return null;
+//  throw new Error("No craft found for this item");
 }
 
 function getMaxNbGeneration(craft: any): number{
   return 1+getMaxNbGeneration(getCraftOfItem(craft.idResult));
 }
-
 
 
 
@@ -140,7 +196,7 @@ function getMaxNbGeneration(craft: any): number{
       
         <!-- Deuxième version -->
 
-      <section v-for="group in getGroupsFromCraft">
+      <section v-for="group in getItemsFromCraftRecursiv(crafts[0])">
 
       </section>
       </section>
@@ -160,7 +216,7 @@ function getMaxNbGeneration(craft: any): number{
 
 
          <!-- Séparateur par crafts -->
-          <div class="groupContener" v-for="group in childOf(craft.idCraft)">
+          <div class="groupContener" v-for="group in getGroupsFromCraft(craft)">
             
             <!-- Différents items -->
             <div class="itemContener" >
