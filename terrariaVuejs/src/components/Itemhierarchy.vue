@@ -1,6 +1,14 @@
 <script setup lang="ts">
-import Item from './Item.vue';
+import { DeprecationTypes } from 'vue';
 import RecursivItem from './RecursivItem.vue';
+import {type Item, type Craft, type ItemGroup, type GroupFragment, ItemsOrdered} from "./types.js";
+
+
+/**
+ * Affiche un item ainsi que ses enfants en appelant RecursivItem.
+ * Pour cela, se base sur une copie de la BDD hard-codés.
+ * Contient également les fonctions de traitement des données nécessaire à l'affichage de ces items 
+ */
 
 let name = "Name";
 let soul = "Not owned";
@@ -71,52 +79,60 @@ function formatCrafts(){
 /**
  * Renvoie tous les items composants un craft ainsi que les crafts les composant récursivement
  * getItemAndHisChildrens = 
- * {
- * 
- *  "item": ITEM,
- *  "enfants":{
- *    "item": ITEM_PARENT,
- *    "enfants": null
- *  }, 
- *  {
- *    "item": ITEM_PRENT2,
- *    "enfants": {
- *      "item": "ITEM_ANCETRE",
- *      "enfants": null
- *    }
- *  }
- * }
- * 
  * [
- *  
- *  []
+ *  {
+ *  "item": ITEM,
+ *  "enfants":
+ *    [
+ *     {
+ *       "item": ITEM_PARENT,
+ *       "enfants": null
+ *     }, 
+ *     {
+ *       "item": ITEM_PRENT2,
+ *       "enfants": 
+ * 
+ *      [
+ *        {
+ *         "item": "ITEM_ANCETRE",
+ *         "enfants": null
+ *        }
+ *      ]
+ *    ]
+ * 
+ * 
  * ]
+ * 
  */
-  function getItemAndHisChildrens(item: any){
+  function getItemAndHisChildrens(item: Item):ItemsOrdered{ //TODO : S'assurer que le passage Map to ItemsOrdered a bien ete effectue
     if(item===null) {
-      return null
+      throw new Error("The item cannot be null"); //TODO : Remplacer toutes les erreur par les bon types d'erreurs
     }
-    let itemsOrder = new Map();
-    let j=0;
-    itemsOrder.set("item", item);
-    const childrens = [];
+    let itemsOrder: ItemsOrdered = new ItemsOrdered();
+    // let j=0;
+    itemsOrder.item = item;
+    const childrens = new Array<ItemsOrdered>();
 
     //On récupère le craft lié à l'item
-    let craft = getCraftOfItem(item);
-    if(craft===null){
-      itemsOrder.set("childrens", []);
-    }
-    else{
+    let craft = getCraftOfItem(item.idItem);
+    // if(craft===null){ // TODO : Vérifier si le cas est necessaire
+    //   itemsOrder.childrens = new Array<ItemsOrdered>();
+    // }
+    // else{
       //On va chercher les parents du craft
+      if(craft===null){
+        return itemsOrder;
+      }
       let groups = getGroupsFromCraft(craft);
 
       for(let i in groups){
         const childItem = getFirstItemFromGroup(groups[i]); //TODO : A changer : ne prend pas en compte les 'OU'
-        childrens[j] = getItemAndHisChildrens(childItem);
-        j++;
+        itemsOrder.childrens.push(getItemAndHisChildrens(childItem));
+        // childrens[j] = getItemAndHisChildrens(childItem);
+        // j++;
       }
 
-      itemsOrder.set("childrens", childrens);
+      // itemsOrder.set("childrens", childrens);
       // for(let i=0; i<itemGroups.length; i++){
       //   if(itemGroups[i].idCraft===craft.idCraft){
       //     let item = items[groupFragments[itemGroups[i].idGroup].idItem];
@@ -126,7 +142,7 @@ function formatCrafts(){
       //     // items[] = items[i];
       //     j++;
         // }
-    }
+    // }
 
     return itemsOrder;
   }
@@ -136,7 +152,7 @@ function formatCrafts(){
  * Donne tous les groupes necessaire à un craft
  * @param craft un craft
  */
-function getGroupsFromCraft(craft: any){
+function getGroupsFromCraft(craft: Craft): Array<ItemGroup>{
   const groupsReturn = [];
   let j=0;
   for(let i=0; i<itemGroups.length; i++){
@@ -152,7 +168,7 @@ function getGroupsFromCraft(craft: any){
  * Renvoie la liste des fragments de l'itemGroup
  * @param group Un element de itemGroup
  */
-function getFragmentFromGroup(group: any){
+function getFragmentFromGroup(group: ItemGroup): Array<GroupFragment>{
   const groupFragmentsReturn = [];
   let j=0;
   for(let i=0; i<groupFragments.length; i++){
@@ -168,7 +184,7 @@ function getFragmentFromGroup(group: any){
  * Renvoie l'item contenu dans le groupFragment, leve une erreur sinon
  * @param fragment Un element de groupFragment 
  */
-function getItemFromFragment(fragment: any){
+function getItemFromFragment(fragment: GroupFragment):Item{
   for(let i=0; i<items.length; i++){
     if(items[i].idItem===fragment.idItem){
       return items[i];    
@@ -182,26 +198,27 @@ function getItemFromFragment(fragment: any){
  * Utile tant qu'on a pas l'api et qu'on a pas implémenté plusieurs items dans un itemGroup
  * @param group un element de itemGroups
  */
-function getFirstItemFromGroup(group: any){
+function getFirstItemFromGroup(group: ItemGroup): Item{
   return getItemFromFragment(getFragmentFromGroup(group)[0])
 }
 
 /**
- * 
- * @param item 
+ * Return the craft that make the item
+ * @param itemId the id of the item
  */
-function getCraftOfItem(item: any){
+function getCraftOfItem(itemId: number):Craft|null{ //TODO : enlever le OU NULL
 
   for(let i=0; i<crafts.length; i++){
-    if(crafts[i].idResult==item.idItem){
+    if(crafts[i].idResult==itemId){
       return crafts[i];
     }
   }
   return null;
-//  throw new Error("No craft found for this item");
+  // throw new Error("No craft found for this item");
 }
 
-function getMaxNbGeneration(craft: any): number{
+function getMaxNbGeneration(craft: Craft|null): number{
+  if(craft===null) return 0;
   return 1+getMaxNbGeneration(getCraftOfItem(craft.idResult));
 }
 
@@ -213,7 +230,7 @@ function getMaxNbGeneration(craft: any): number{
     <main>
       <section>
         <!-- <Item v-bind:idItem="baseItemId"></Item> -->
-          <RecursivItem :items="itemsOrdererCraft0" :index="0"></RecursivItem>
+          <RecursivItem :itemsOrdered="itemsOrdererCraft0" :generation="0"></RecursivItem>
         <!-- Deuxième version -->
 
       <!-- <section v-for="group in getItemAndHisChildrens(crafts[0])"> -->

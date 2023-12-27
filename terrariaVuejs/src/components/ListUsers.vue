@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import User from './User.vue';
+/**
+ * Affiche tous les utilisateurs à partir des données hard-codés. 
+ * Permet de tester l'affichage de la liste des utilisateurs
+ */
 
 
 let users = [{

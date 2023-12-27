@@ -1,5 +1,8 @@
 
 <script setup lang="ts">
+/**
+ * Affiche un utilisateur avec sa photo et ses infos
+ */
     const caracs = defineProps<{
     login: string,
     email: string,

@@ -1,5 +1,9 @@
 <script setup lang="ts">
 
+/**
+ * Affiche un item
+ */
+
 const carac = defineProps<{
   idItem: number
 }>();
@@ -10,11 +14,11 @@ console.log(carac.idItem);
 
 <template>
 
-    <section id="item">
+    <div id="item">
         <div>
             Voici l'item numéro {{ idItem }}
         </div>
-    </section>
+      </div>
 
 </template>
 
@@ -22,7 +26,7 @@ console.log(carac.idItem);
 
 <style scoped>
 
-  section #item{
+  div #item{
     background-color: var(--bg-sky);
     border: 2px black solid;
     width: 300px;
