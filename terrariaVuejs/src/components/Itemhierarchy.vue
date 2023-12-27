@@ -60,65 +60,19 @@ console.log(itemsOrdererCraft0);
 console.log("-----------------");
 
 /**
- * Met en forme les données de sorte à avoir une architecture simple à afficher :
- * [ //Tableau lignes
- *  [ //groupes de crafts (Pour chaque craft à cette génération) 
- *  [
- *    //Items
- *   ],
- *  []
- *  ],
- *  []
- * ]
- */
-function formatCrafts(){
-  let itemsToShow = [];
-  
-}
-
-/**
  * Renvoie tous les items composants un craft ainsi que les crafts les composant récursivement
- * getItemAndHisChildrens = 
- * [
- *  {
- *  "item": ITEM,
- *  "enfants":
- *    [
- *     {
- *       "item": ITEM_PARENT,
- *       "enfants": null
- *     }, 
- *     {
- *       "item": ITEM_PRENT2,
- *       "enfants": 
- * 
- *      [
- *        {
- *         "item": "ITEM_ANCETRE",
- *         "enfants": null
- *        }
- *      ]
- *    ]
- * 
- * 
- * ]
- * 
- */
+ */ 
   function getItemAndHisChildrens(item: Item):ItemsOrdered{ //TODO : S'assurer que le passage Map to ItemsOrdered a bien ete effectue
     if(item===null) {
       throw new Error("The item cannot be null"); //TODO : Remplacer toutes les erreur par les bon types d'erreurs
     }
     let itemsOrder: ItemsOrdered = new ItemsOrdered();
-    // let j=0;
     itemsOrder.item = item;
     const childrens = new Array<ItemsOrdered>();
 
     //On récupère le craft lié à l'item
     let craft = getCraftOfItem(item.idItem);
-    // if(craft===null){ // TODO : Vérifier si le cas est necessaire
-    //   itemsOrder.childrens = new Array<ItemsOrdered>();
-    // }
-    // else{
+
       //On va chercher les parents du craft
       if(craft===null){
         return itemsOrder;
@@ -128,21 +82,9 @@ function formatCrafts(){
       for(let i in groups){
         const childItem = getFirstItemFromGroup(groups[i]); //TODO : A changer : ne prend pas en compte les 'OU'
         itemsOrder.childrens.push(getItemAndHisChildrens(childItem));
-        // childrens[j] = getItemAndHisChildrens(childItem);
-        // j++;
+
       }
 
-      // itemsOrder.set("childrens", childrens);
-      // for(let i=0; i<itemGroups.length; i++){
-      //   if(itemGroups[i].idCraft===craft.idCraft){
-      //     let item = items[groupFragments[itemGroups[i].idGroup].idItem];
-      //     itemsOrder.set("item", item);
-      //     const childrenCraft = getCraftOfItem(item); //On récupere les enfants de l'item
-      //       itemsOrder.set("childrens", getItemAndHisChildrens(childrenCraft));
-      //     // items[] = items[i];
-      //     j++;
-        // }
-    // }
 
     return itemsOrder;
   }
@@ -229,42 +171,8 @@ function getMaxNbGeneration(craft: Craft|null): number{
 <template>
     <main>
       <section>
-        <!-- <Item v-bind:idItem="baseItemId"></Item> -->
           <RecursivItem :itemsOrdered="itemsOrdererCraft0" :generation="0"></RecursivItem>
-        <!-- Deuxième version -->
-
-      <!-- <section v-for="group in getItemAndHisChildrens(crafts[0])"> -->
-
-      <section>
-
       </section>
-      </section>
-      <section>
-        
-      </section>
-      <section>
-        
-      </section>
-      <section>
-        
-      </section>
-      <!-- Première version : Pas ouf -->
-
-            <!-- Séparateur par niveau d'héritage -->
-      <!-- <section v-for="craft in crafts">
-
-
-         Séparateur par crafts -->
-          <!-- <div class="groupContener" v-for="group in getGroupsFromCraft(craft)"> -->
-            
-            <!-- Différents items -->
-            <!-- <div class="itemContener" > -->
-              
-              <!-- <Item v-bind:idItem="getFirstItemFromGroup(group).idItem"></Item> -->
-            <!-- </div> -->
-            
-          <!-- </div> -->
-      <!-- </section> -->
   </main>
 </template>
 
