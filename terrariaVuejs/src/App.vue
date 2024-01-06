@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import Item from './components/Item.vue';
-import ItemHierarchy from './components/Itemhierarchy.vue';
-import ListUsersVue from './components/ListUsers.vue';
+import Itemhierarchy from './views/Itemhierarchy.vue';
+import type ListUsersVue from './views/ListUsers.vue';
+import RecursivItem from './views/RecursivItem.vue';
+
+
 
 //import router from './router/index.ts';
 
@@ -31,7 +33,7 @@ let menu2 = "#Menu2"
     </nav>
     </header>
 
-    <ItemHierarchy></ItemHierarchy>
+    <Itemhierarchy></Itemhierarchy>
 
 </template>
 

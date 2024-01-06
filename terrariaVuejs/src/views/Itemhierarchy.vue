@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { DeprecationTypes } from 'vue';
+import { type Item, ItemsOrdered, type Craft, type ItemGroup, type GroupFragment } from '@/components/types';
 import RecursivItem from './RecursivItem.vue';
-import {type Item, type Craft, type ItemGroup, type GroupFragment, ItemsOrdered} from "./types.js";
 
 
 /**
