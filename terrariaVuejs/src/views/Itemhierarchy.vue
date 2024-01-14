@@ -54,9 +54,6 @@ let crafts = [
 
 let itemsOrdererCraft0= getItemAndHisChildrens(items[0]);
 
-console.log("itemsOrdererCraft0");
-console.log(itemsOrdererCraft0);
-console.log("-----------------");
 
 /**
  * Renvoie tous les items composants un craft ainsi que les crafts les composant récursivement

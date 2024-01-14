@@ -7,7 +7,6 @@
 const carac = defineProps<{
   idItem: number
 }>();
-console.log(carac.idItem);
 
 
 </script>

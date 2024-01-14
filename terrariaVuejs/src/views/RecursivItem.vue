@@ -13,7 +13,6 @@ const carac = defineProps<{
     generation: number 
 }>();
 
-console.log(carac.itemsOrdered);
 const item:Item = carac.itemsOrdered.item;
 const childrens:Array<ItemsOrdered> = carac.itemsOrdered.childrens;
 

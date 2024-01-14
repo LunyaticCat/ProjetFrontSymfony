@@ -1,13 +1,17 @@
 <script setup lang="ts">
-import Itemhierarchy from './views/Itemhierarchy.vue';
-import type ListUsersVue from './views/ListUsers.vue';
-import RecursivItem from './views/RecursivItem.vue';
+import Itemhierarchy from './Itemhierarchy.vue';
+import type ListUsersVue from './ListUsers.vue';
+import RecursivItem from './RecursivItem.vue';
+import {useRouter} from 'vue-router';
 
+
+const router = useRouter();
+//  @import "/chemin/vers/moncss";
 
 
 //import router from './router/index.ts';
 
-//app.use(router) //ATTENTION, il faut récupérer le contenu d'un fichier ici https://matthieu-rosenfeld.github.io/assets/App.vue
+// app.use(router) //ATTENTION, il faut récupérer le contenu d'un fichier ici https://matthieu-rosenfeld.github.io/assets/App.vue
 let menu2 = "#Menu2"
 
 
@@ -26,14 +30,12 @@ let menu2 = "#Menu2"
     <header>
         <h1>Logo carre</h1>
         <nav>
-        <a href="#section1">Item Hierarchy exemple</a>
-        <a v-bind:href="menu2">User exemple</a>
-        <a href="#section3">Login</a>
-        <a href="#section4">Connect 4</a>
+        <a @click="router.push('/allusers')">All users</a>
+        <a @click="router.push('/itemhierarchy')">Item hierarchy</a>
+        <a @click="router.push('/user')">Mon compte</a>
     </nav>
     </header>
-
-    <Itemhierarchy></Itemhierarchy>
+    <router-view />
 
 </template>
 

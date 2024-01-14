@@ -24,6 +24,23 @@
             
         </div>
     </div>
+    <template>
+    <div class="contentBox">
+        <div class="top">
+        Profil de {{ caracs.login }}
+        </div>
+        <div class="content">
+        <div class="group">
+            <label>Login</label>
+            <input :value="caracs.login" >
+        </div> 
+        <div class="group">
+            <label>Adresse e-mail</label>
+            <input :value="caracs.email" > 
+        </div> 
+        </div>
+    </div>
+</template>
   </template>
   
   <style scoped>
