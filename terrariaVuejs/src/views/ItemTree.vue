@@ -1,20 +1,18 @@
 
 <script setup lang="ts">
 import ItemVue from './Item.vue';
-import {ref} from 'vue';
-import type {Item, ItemsOrdered} from '../components/types.ts';
+import type {Item, ItemFamily} from '@/components/types';
 /**
   * Affiche un item ainsi que tous ses enfants sous forme d'un arbre vertical
-  * TODO : Refaire TOUT les commentaires de ce fichier
   */
 
 const carac = defineProps<{
-    itemsOrdered: ItemsOrdered
+    itemsOrdered: ItemFamily
     generation: number 
 }>();
 
 const item:Item = carac.itemsOrdered.item;
-const childrens:Array<ItemsOrdered> = carac.itemsOrdered.childrens;
+const childrens:Array<ItemFamily> = carac.itemsOrdered.childrens;
 
 </script>
 
@@ -24,7 +22,7 @@ const childrens:Array<ItemsOrdered> = carac.itemsOrdered.childrens;
         generation = {{ generation }}
         <ItemVue :idItem="item.idItem"></ItemVue>
         <section>
-            <RecursivItem v-for="groupItems in childrens" v-bind:key="groupItems.item?.nameItem" :itemsOrdered="groupItems" :generation="generation+1"></RecursivItem>
+            <ItemTree v-for="groupItems in childrens" v-bind:key="groupItems.item?.nameItem" :itemsOrdered="groupItems" :generation="generation+1"></ItemTree>
         </section>
 
     </div>

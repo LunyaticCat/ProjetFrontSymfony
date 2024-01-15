@@ -25,26 +25,12 @@ export interface GroupFragment{
     idItem: number;
 }
 
-// export type ItemsOrderedV1 ={
-// [x: string]: {};
-//     item: Item;
-//     childrens: ItemsOrdered;
-// }|null;
-
-
-export class ItemsOrdered{
+export class ItemFamily {
     item: Item;
-    childrens: Array<ItemsOrdered>; //TODO : Vérifier si cette variable ne devrait pas etre ancestor
+    childrens: Array<ItemFamily>;
 
     constructor(){
         this.item = null;
-        this.childrens = new Array<ItemsOrdered>();
+        this.childrens = new Array<ItemFamily>();
     }
 }
-/**
- * Réactiver si soltion pour extend number trouvée
- * export interface Id extends number{ 
- * }
- * */
-
-//TODO : trouver comment fonctionnent les enum

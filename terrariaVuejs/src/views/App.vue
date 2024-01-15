@@ -1,22 +1,9 @@
 <script setup lang="ts">
-import Itemhierarchy from './Itemhierarchy.vue';
-import type ListUsersVue from './ListUsers.vue';
-import RecursivItem from './RecursivItem.vue';
 import {useRouter} from 'vue-router';
 
 
 const router = useRouter();
-//  @import "/chemin/vers/moncss";
 
-
-//import router from './router/index.ts';
-
-// app.use(router) //ATTENTION, il faut récupérer le contenu d'un fichier ici https://matthieu-rosenfeld.github.io/assets/App.vue
-let menu2 = "#Menu2"
-
-
-
-//router.push({name: 'nomDeLaRoute'})
 </script>
 
 <template>
@@ -28,11 +15,11 @@ let menu2 = "#Menu2"
 
 
     <header>
-        <h1>Logo carre</h1>
+        <img src="../assets/logo.png" alt="logo" class="logo">
         <nav>
-        <a @click="router.push('/allusers')">All users</a>
-        <a @click="router.push('/itemhierarchy')">Item hierarchy</a>
-        <a @click="router.push('/user')">Mon compte</a>
+        <a @click="router.push('/allusers')">All Users</a>
+        <a @click="router.push('/itemhierarchy')">Item Hierarchy</a>
+        <a @click="router.push('/user')">My Account</a>
     </nav>
     </header>
     <router-view />
@@ -42,6 +29,10 @@ let menu2 = "#Menu2"
 
 
 <style scoped>
+
+  .logo {
+    width: 80px;
+  }
 
   header {
     background-color: var(--bg-purple);
