@@ -1,13 +1,32 @@
 
 <script setup lang="ts">
+import { onMounted, ref } from 'vue';
+
+
 /**
  * Affiche un utilisateur avec sa photo et ses infos
  */
     const caracs = defineProps<{
-    login: string,
-    email: string,
-    pictureUrl: string
+        login: string,
+        email: string,
+        pictureUrl: string
     }>()
+
+
+    const usersApi = ref([{
+        idUser: 1,
+        login:"Gaston Lagafe",
+        email: "email@bg.fr",
+        pictureUrl: "../assets/tiny.png"
+    },
+    {
+        idUser: 2,
+        login:"Gaston Lagafe",
+        email: "email2@bg.fr",
+        pictureUrl: "../assets/tiny.png"
+    }]);
+
+    
 
 
 </script>

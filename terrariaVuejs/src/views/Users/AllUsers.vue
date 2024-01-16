@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
-import User from './User.vue';
+import { onMounted, ref, type Ref } from 'vue';
+import BlocUser from './BlocUser.vue';
+import { UserManager } from '@/components/class';
+import type { User } from '@/components/types';
 /**
  * Affiche tous les utilisateurs à partir des données hard-codés. 
  * Permet de tester l'affichage de la liste des utilisateurs
@@ -53,7 +55,7 @@ let users = [{
     pictureUrl: "../assets/mirana.png"
 }]
 
-const usersApi = ref([{
+const usersApi :Ref<User[]> = ref([{
     idUser: 1,
     login:"Gaston Lagafe",
     email: "email@bg.fr",
@@ -100,11 +102,13 @@ const usersApi = ref([{
 }]);
 
 onMounted(() => {
-fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/users')
-  .then(reponsehttp => reponsehttp.json())
-  .then(reponseJSON => {
-    usersApi.value = reponseJSON["hydra:member"];
-  });
+//TODO : Réactivé si l'appel de la fonction getAllUsers ne marche pas
+    // fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/users')
+//   .then(reponsehttp => reponsehttp.json())
+//   .then(reponseJSON => {
+//     usersApi.value = reponseJSON["hydra:member"];
+//   });
+    usersApi.value = UserManager.getAllUsers()
 })
 </script>
 
@@ -112,8 +116,8 @@ fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/users
 <template>
     <section>
         <div v-for="user in usersApi" :key="user.idUser">
-            <User v-bind:login="user.login" v-bind:email="user.email" 
-            v-bind:picture-url="user.pictureUrl"></User>
+            <BlocUser v-bind:login="user.login" v-bind:email="user.email" 
+            v-bind:picture-url="user.pictureUrl"></BlocUser>
         </div>
     </section>
 </template>

@@ -1,7 +1,8 @@
 
 <script setup lang="ts">
+import type { ItemFamily } from '@/components/class';
 import ItemVue from './Item.vue';
-import type {Item, ItemFamily} from '@/components/types';
+import type {Item} from '@/components/types';
 /**
   * Affiche un item ainsi que tous ses enfants sous forme d'un arbre vertical
   */

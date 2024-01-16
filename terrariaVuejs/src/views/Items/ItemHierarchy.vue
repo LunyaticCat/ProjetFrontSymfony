@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import {type Item, ItemFamily, type Craft, type ItemGroup, type GroupFragment} from '@/components/types';
+import {type Item, type Craft, type ItemGroup, type GroupFragment} from '@/components/types';
 import ItemTree from './ItemTree.vue';
+import { ItemFamily } from '@/components/class';
 
 
 /**

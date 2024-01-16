@@ -4,6 +4,7 @@ export type Item = {
 } | null;
 
 export interface User {
+    idUser: number;
     login: string;
     email: string;
     pictureUrl: string;
@@ -23,14 +24,4 @@ export interface Craft{
 export interface GroupFragment{
     idGroup: number;
     idItem: number;
-}
-
-export class ItemFamily {
-    item: Item;
-    childrens: Array<ItemFamily>;
-
-    constructor(){
-        this.item = null;
-        this.childrens = new Array<ItemFamily>();
-    }
 }

@@ -9,6 +9,7 @@ const carac = defineProps<{
 }>();
 
 
+
 </script>
 
 <template>
