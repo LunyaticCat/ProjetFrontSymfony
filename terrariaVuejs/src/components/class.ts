@@ -13,11 +13,17 @@ export class ItemFamily {
     }
 }
 
+/**
+ * Gère les appels à l'API pour les utilisateurs
+ */
 export class UserManager {
 
 
+
     /**
-     * getAllI
+     * Demande à l'API la liste des utilisateurs
+     * Attention, prévoir la latence de l'appel
+     * @returns Une liste contenant tous les utilisateurs de l'API
      */
      static getAllUsers(): User[] {
         let users : User[] = [];
@@ -25,10 +31,32 @@ export class UserManager {
         fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/users')
             .then(reponsehttp => reponsehttp.json())
             .then(reponseJSON => {
-            users = reponseJSON["hydra:member"];
+                users = reponseJSON["hydra:member"];
         });
 
         return users;
+    } 
+
+    /**
+     * 
+     * @param id l'identifiant de l'utilisateur en base de donnée
+     * @returns Un utilisateur
+     */
+    static getUsersById(idUser: number): User {
+        let user : User = {
+            idUser: 1,
+            login:"Gaston Lagafe",
+            email: "email@bg.fr",
+            pictureUrl: "../assets/tiny.png"
+        };
+
+        fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/user/'+idUser)
+            .then(reponsehttp => reponsehttp.json())
+            .then(reponseJSON => {
+                user = reponseJSON["hydra:member"];
+        });
+
+        return user;
     } 
 
 
@@ -36,13 +64,43 @@ export class UserManager {
 
 
 export class ItemManager {
+
+
+   /**
+     * Demande à l'API la liste des items
+     * Attention, prévoir la latence de l'appel
+     * @returns Une liste contenant tous les utilisateurs de l'API
+     */
+   static getAllItems(): Item[] {
+    let items : Item[] = [];
+
+    fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/items')
+        .then(reponsehttp => reponsehttp.json())
+        .then(reponseJSON => {
+            items = reponseJSON["hydra:member"];
+    });
+
+    return items;
+} 
+
     /**
-     * Renvoie un item en le demandant à l'api.
-     * Attention, temps de reception potentielement long
+     * Demande à l'API un item par son identifiant en bd
+     * Attention, prévoir la latence de l'appel
      * @param idItem L'identifiant de l'item à demander à l'api
      */
-    public static getItemById(idItem: number){
-
-    }
+    public static getItemById(idItem: number): Item{
+        let item : Item = {
+            idItem : 1,
+            nameItem : "The One Ring"
+        };
+    
+            fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/item/'+idItem)
+                .then(reponsehttp => reponsehttp.json())
+                .then(reponseJSON => {
+                    item = reponseJSON["hydra:member"];
+            });
+    
+            return item;
+        } 
 
 }
