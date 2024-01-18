@@ -32,10 +32,11 @@ const router = useRouter();
 
   .logo {
     width: 80px;
+    border-radius: 10px;
   }
 
   header {
-    background-color: var(--bg-purple);
+    background-color: var(--bg-grey);
     position: sticky;
     top: 0;
     display: flex;
@@ -43,6 +44,9 @@ const router = useRouter();
     flex-direction: row;
     align-content: center;
     justify-content: flex-start;
+    box-shadow: 0 5px 5px black;
+    font-family: "DejaVu Sans",serif;
+    user-select: none;
 }
 
   header h1{
@@ -54,7 +58,6 @@ const router = useRouter();
 
   header nav {
     display: flex;
-    background-color: var(--bg-purple);
     flex-direction: row;
     width: 100%;
     justify-content: space-around;
@@ -63,7 +66,10 @@ const router = useRouter();
 
     header nav a{
       color: black;
-
+      background: var(--bg-aqua);
+      padding: 10px 10px 10px 10px;
+      border-radius: 10px;
+      box-shadow: 0 2px 2px black;
     }
 
     body{
