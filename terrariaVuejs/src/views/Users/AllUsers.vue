@@ -102,12 +102,6 @@ const usersApi :Ref<User[]> = ref([{
 }]);
 
 onMounted(() => {
-//TODO : Réactivé si l'appel de la fonction getAllUsers ne marche pas
-    // fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/users')
-//   .then(reponsehttp => reponsehttp.json())
-//   .then(reponseJSON => {
-//     usersApi.value = reponseJSON["hydra:member"];
-//   });
     usersApi.value = UserManager.getAllUsers()
 })
 </script>

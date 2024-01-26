@@ -1,8 +1,9 @@
-import type { Item, User } from "./types";
-import { ref } from 'vue';
+import type { Craft, GroupFragment, Item, ItemGroup, User } from "./types";
 
 
-
+/**
+ * Gère le lien récursif entre les items
+ */
 export class ItemFamily {
     item: Item;
     childrens: Array<ItemFamily>;
@@ -62,7 +63,9 @@ export class UserManager {
 
 }
 
-
+/**
+ * Gère les appels à l'API pour les items
+ */
 export class ItemManager {
 
 
@@ -103,4 +106,80 @@ export class ItemManager {
             return item;
         } 
 
+}
+
+/**
+ * Gère les appels à l'API pour les groups fragments
+ */
+export class GroupFragmentManager {
+    /**
+      * Demande à l'API la liste des groupFragments
+      * Attention, prévoir la latence de l'appel
+      * @returns Une liste contenant tous les groupes fragment de l'API
+      */
+    static getAllGroupFragment(): GroupFragment[] {
+     let groupFragments : GroupFragment[] = [];
+ 
+     fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/group_fragments')
+         .then(reponsehttp => reponsehttp.json())
+         .then(reponseJSON => {
+            groupFragments = reponseJSON["hydra:member"];
+     });
+ 
+     return groupFragments;
+ } 
+}
+
+/**
+ * Gère les appels à l'API pour les items groups
+ */
+export class ItemGroupManager {
+    /**
+      * Demande à l'API la liste des groupFragments
+      * Attention, prévoir la latence de l'appel
+      * @returns Une liste contenant tous les groupes fragment de l'API
+      */
+    static getAllItemGroups(): ItemGroup[] {
+     let itemGroups : ItemGroup[] = [];
+ 
+     fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/item_groups')
+         .then(reponsehttp => reponsehttp.json())
+         .then(reponseJSON => {
+            itemGroups = reponseJSON["hydra:member"];
+     });
+ 
+     return itemGroups;
+ } 
+
+ 
+}
+
+/**
+ * Gère les appels à l'API pour les crafts
+ */
+export class CraftManager {
+    /**
+      * Demande à l'API la liste des groupFragments
+      * Attention, prévoir la latence de l'appel
+      * @returns Une liste contenant tous les groupes fragment de l'API
+      */
+    static getAllCrafts(): Craft[] {
+     let crafts: Craft[] = [];
+ 
+     fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/crafts')
+         .then(reponsehttp => reponsehttp.json())
+         .then(reponseJSON => {
+            crafts = reponseJSON["hydra:member"];
+     });
+ 
+     return crafts;
+ } 
+
+
+    /**
+     * Demande la création d'un craft en base de données
+     */
+    static createCraft(){
+        
+    }
 }
