@@ -1,26 +1,24 @@
 <script setup lang="ts">
 
+/**
+ * Affiche un item
+ */
+
 const carac = defineProps<{
-  id: number
+  idItem: number
 }>();
 
-const click = function() {
-  console.log("AAAAAAAAAAAAAAAAAAAAAAAAA");
-}
 
-let name = "Name";
-let soul = "Not owned";
-let rick = "Roll";
 
 </script>
 
 <template>
 
-    <section id="item">
+    <div id="item">
         <div>
-            Voici l'item numéro {{ id }}
+            Voici l'item numéro {{ idItem }}
         </div>
-    </section>
+      </div>
 
 </template>
 
@@ -28,10 +26,10 @@ let rick = "Roll";
 
 <style scoped>
 
-  section #item{
+  div #item{
     background-color: var(--bg-sky);
     border: 2px black solid;
-    width: 300px;
+    width: 100px;
     height: 100px;
     padding: 10px 0 10px 0;
     margin: 5px;

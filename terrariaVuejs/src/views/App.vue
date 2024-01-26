@@ -1,15 +1,9 @@
 <script setup lang="ts">
-import Item from './components/Item.vue';
-import ItemHierarchy from './components/Itemhierarchy.vue';
-import ItemPage from './components/ItemsPage.vue';
-import ItemsPage from './components/ItemsPage.vue';
-import ListUsersVue from './components/ListUsers.vue';
-let menu2 = "#Menu2"
+import {useRouter} from 'vue-router';
 
 
-const click = function() {
-  console.log("AAAAAAAAAAAAAAAAAAAAAAAAA");
-}
+const router = useRouter();
+
 </script>
 
 <template>
@@ -21,16 +15,14 @@ const click = function() {
 
 
     <header>
-        <h1>Logo carre</h1>
+        <img src="../assets/logo.png" alt="logo" class="logo">
         <nav>
-        <a href="#section1">My page 1</a>
-        <a v-bind:href="menu2">Menu 2</a>
-        <a href="#section3" v-on:click="click">Login</a>
-        <a href="#section4">Connect 4</a>
+        <a @click="router.push('/allusers')">All Users</a>
+        <a @click="router.push('/itemhierarchy')">Item Hierarchy</a>
+        <a @click="router.push('/user')">My Account</a>
     </nav>
     </header>
-
-    <ItemHierarchy></ItemHierarchy>
+    <router-view />
 
 </template>
 
@@ -38,8 +30,13 @@ const click = function() {
 
 <style scoped>
 
+  .logo {
+    width: 80px;
+    border-radius: 10px;
+  }
+
   header {
-    background-color: var(--bg-purple);
+    background-color: var(--bg-grey);
     position: sticky;
     top: 0;
     display: flex;
@@ -47,6 +44,9 @@ const click = function() {
     flex-direction: row;
     align-content: center;
     justify-content: flex-start;
+    box-shadow: 0 5px 5px black;
+    font-family: "DejaVu Sans",serif;
+    user-select: none;
 }
 
   header h1{
@@ -58,7 +58,6 @@ const click = function() {
 
   header nav {
     display: flex;
-    background-color: var(--bg-purple);
     flex-direction: row;
     width: 100%;
     justify-content: space-around;
@@ -67,7 +66,10 @@ const click = function() {
 
     header nav a{
       color: black;
-
+      background: var(--bg-aqua);
+      padding: 10px 10px 10px 10px;
+      border-radius: 10px;
+      box-shadow: 0 2px 2px black;
     }
 
     body{
