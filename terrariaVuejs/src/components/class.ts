@@ -1,5 +1,33 @@
 import type { Craft, GroupFragment, Item, ItemGroup, User } from "./types";
+import { reactive } from 'vue';
 
+/**
+ * Gère le lien d'autorisation avec l'api
+ */
+export class Autentification{ // On pourrait utiliser un storeAutentification mais pas necessaire puisque nos requtes sont ensembles
+    private static jwToken: string;
+
+    /**
+     * Demande un token d'autentification
+     */
+    static createToken(){
+        const storeAuthentification = reactive({
+            JWT: "",
+            connexion(login: string, motDePasse: string, succes:()=>void, echec:()=>void): void{
+                //fait le fetch et change le JWT si succès
+                //execute succes ou echec en fonction du succès de l'authentification
+            }
+        });
+
+        //Voir si c'est utile d'utiliser le storeAutentification
+    }
+
+
+    static getToken(){
+        return this.jwToken;
+    }
+
+}
 
 /**
  * Gère le lien récursif entre les items
@@ -178,8 +206,19 @@ export class CraftManager {
 
     /**
      * Demande la création d'un craft en base de données
+     * @param idResult L'identifiant de l'item à créer
+     * @param idCreator Facultatif : l'identifiant de l'utilisateur qui l'a créé
      */
-    static createCraft(){
-        
+    static createCraft(idResult: number, idCreator: number|null){
+        fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/crafts', {
+            method: "POST",  
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer '+ Autentification.getToken()
+            },
+            body: JSON.stringify({
+                idResult: "path/실례.html"
+            }),
+        });
     }
 }
