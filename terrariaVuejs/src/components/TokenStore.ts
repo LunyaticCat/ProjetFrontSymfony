@@ -19,12 +19,11 @@ export const authentificationToken = reactive({
                     if(reponsehttp.status !== 200){
                         echec();
                     }else{
-                        if(reponsehttp.body!==null)
-                            authentificationToken.JWT = ""//reponsehttp.body.getReader().read();
-                        succes();
-                    }
-    
-            }
+                        reponsehttp.json().then(reponseJSON =>{
+                            authentificationToken.JWT = reponseJSON["token"];
+                        })
+                    }    
+                }
             )
         }
     }
