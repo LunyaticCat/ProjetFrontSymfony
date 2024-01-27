@@ -1,33 +1,5 @@
 import type { Craft, GroupFragment, Item, ItemGroup, User } from "./types";
-import { reactive } from 'vue';
-
-/**
- * Gère le lien d'autorisation avec l'api
- */
-export class Autentification{ // On pourrait utiliser un storeAutentification mais pas necessaire puisque nos requtes sont ensembles
-    private static jwToken: string;
-
-    /**
-     * Demande un token d'autentification
-     */
-    static createToken(){
-        const storeAuthentification = reactive({
-            JWT: "",
-            connexion(login: string, motDePasse: string, succes:()=>void, echec:()=>void): void{
-                //fait le fetch et change le JWT si succès
-                //execute succes ou echec en fonction du succès de l'authentification
-            }
-        });
-
-        //Voir si c'est utile d'utiliser le storeAutentification
-    }
-
-
-    static getToken(){
-        return this.jwToken;
-    }
-
-}
+import {authentificationToken} from '@/components/TokenStore';
 
 /**
  * Gère le lien récursif entre les items
@@ -79,7 +51,7 @@ export class UserManager {
             pictureUrl: "../assets/tiny.png"
         };
 
-        fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/user/'+idUser)
+        fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/user/'+encodeURI(String(idUser)))
             .then(reponsehttp => reponsehttp.json())
             .then(reponseJSON => {
                 user = reponseJSON["hydra:member"];
@@ -125,7 +97,7 @@ export class ItemManager {
             nameItem : "The One Ring"
         };
     
-            fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/item/'+idItem)
+            fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/item/'+encodeURI(String(idItem)))
                 .then(reponsehttp => reponsehttp.json())
                 .then(reponseJSON => {
                     item = reponseJSON["hydra:member"];
@@ -214,7 +186,7 @@ export class CraftManager {
             method: "POST",  
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer '+ Autentification.getToken()
+                'Authorization': 'Bearer '+ authentificationToken.JWT
             },
             body: JSON.stringify({
                 idResult: "path/실례.html"
