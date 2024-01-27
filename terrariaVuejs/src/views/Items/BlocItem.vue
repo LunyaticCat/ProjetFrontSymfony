@@ -30,7 +30,6 @@ const carac = defineProps<{
     background-color: var(--bg-sky);
     border: 2px black solid;
     width: 100px;
-    height: 100px;
     padding: 10px 0 10px 0;
     margin: 5px;
 }

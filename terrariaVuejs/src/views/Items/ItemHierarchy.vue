@@ -171,14 +171,15 @@ function getMaxNbGeneration(craft: Craft | null): number {
 section {
   background-color: var(--bg-aqua);
   width: 100%;
-  height: 150px;
+  height: 425px;
   display: flex;
   justify-content: center;
   margin-top: 10px;
 }
 
 main {
-  background-color: black;
+  height: 100%;
+
 }
 
 div .groupContener {
