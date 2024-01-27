@@ -36,7 +36,7 @@ const router = useRouter();
   }
 
   header {
-    background-color: var(--bg-grey);
+    background: no-repeat url("https://pbs.twimg.com/media/EGxDoK3XYAAOnOI.jpg") center/100%;
     position: sticky;
     top: 0;
     display: flex;
