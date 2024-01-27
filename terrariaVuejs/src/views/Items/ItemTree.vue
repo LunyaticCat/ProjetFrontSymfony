@@ -20,7 +20,6 @@ const childrens:Array<ItemFamily> = carac.itemsOrdered.childrens;
 <template>
 <!-- Affiche l'item -->
     <div v-if="item!==null" class="verticalHierarchy">
-        generation = {{ generation }}
         <ItemVue :idItem="item.idItem"></ItemVue>
         <section>
             <ItemTree v-for="groupItems in childrens" v-bind:key="groupItems.item?.nameItem" :itemsOrdered="groupItems" :generation="generation+1"></ItemTree>

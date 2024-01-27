@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {useRouter} from 'vue-router';
-
+import { authentificationToken } from '@/components/TokenStore';
 
 const router = useRouter();
 
@@ -19,7 +19,8 @@ const router = useRouter();
         <nav>
         <a @click="router.push('/allusers')">All Users</a>
         <a @click="router.push('/itemhierarchy')">Item Hierarchy</a>
-        <a @click="router.push('/user')">My Account</a>
+        <a v-if="!authentificationToken.isDefine()" @click="router.push('/login')">Login</a>
+        <a v-if="authentificationToken.isDefine()" @click="router.push('/user')">My Account</a>
     </nav>
     </header>
     <router-view />
