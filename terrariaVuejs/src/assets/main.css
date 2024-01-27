@@ -1,14 +1,14 @@
 /* charte graphique */
 :root {
-  --bg-sky:  #A2D5C6;
-  --bg-aqua: #077B8A; 
-  --bg-ocean: #034a53; 
-  --bg-grey: rgba(87, 87, 87, 0.63);
-  --txt-red: #D72631;
+    --bg-sky: #A2D5C6;
+    --bg-aqua: #077B8A;
+    --bg-ocean: #034a53;
+    --bg-grey: rgba(87, 87, 87, 0.63);
+    --txt-red: #D72631;
 }
 
 
-body{
-  background-color: var(--bg-ocean);
-  margin: 0;
+body {
+    background-color: var(--bg-ocean);
+    margin: 0;
 }
