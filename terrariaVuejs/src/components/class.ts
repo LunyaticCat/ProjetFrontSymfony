@@ -40,8 +40,8 @@ export class UserManager {
     } 
 
     /**
-     * 
-     * @param id l'identifiant de l'utilisateur en base de donnée
+     *
+     * @param idUser l'identifiant de l'utilisateur en base de donnée
      * @returns Un utilisateur
      */
     static getUserById(idUser: number): User {
@@ -56,8 +56,8 @@ export class UserManager {
             .then(reponsehttp => reponsehttp.json())
             .then(reponseJSON => {
                 user = reponseJSON["hydra:member"];
+                user.pictureUrl = "https://webinfo.iutmontp.univ-montp2.fr/~pujadej/ProjetWebSymphonyMyAvatar/public/avatar/" + user.pictureUrl;
         });
-
         return user;
     } 
 
