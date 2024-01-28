@@ -35,7 +35,6 @@ onMounted(() => {
 <template>
     <section>
         <div v-for="user in usersApi" :key="user.idUser">
-            testaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
             <BlocUser v-bind:user=user></BlocUser>
         </div>
     </section>
