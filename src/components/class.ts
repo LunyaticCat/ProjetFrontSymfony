@@ -49,7 +49,7 @@ export class UserManager {
             idUser: 0,
             login:"Utilisateur factice",
             email: "rien@rien.fr",
-            pictureUrl: "../assets/tiny.png"
+            pictureUrl: "../../assets/tiny.png"
         };
 
         fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/user/'+encodeURI(String(idUser)))

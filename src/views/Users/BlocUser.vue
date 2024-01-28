@@ -27,7 +27,7 @@ import { onMounted, ref } from 'vue';
         <h1>{{external.user.login}}</h1>
         <div id="userInfo">
 
-        <img src="../assets/tiny.png">
+        <img src="../../assets/tiny.png">
                 <p>{{external.user.email}}</p>
                 <p>L'image est pas défaut, à modifier</p>
                 <p>info 3</p>

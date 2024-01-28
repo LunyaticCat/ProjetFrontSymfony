@@ -13,92 +13,92 @@ let users = [{
     idUser: 1,
     login:"Gaston Lagafe",
     email: "email@bg.fr",
-    pictureUrl: "../assets/tiny.png"
+    pictureUrl: "../../assets/tiny.png"
 },
 {
     idUser: 2,
     login:"Aloe Verra",
     email: "Gabou@bg.fr",
-    pictureUrl: "../assets/mirana.png"
+    pictureUrl: "../../assets/mirana.png"
 },{
     idUser: 1,
     login:"Gaston Lagafe",
     email: "email@bg.fr",
-    pictureUrl: "../assets/tiny.png"
+    pictureUrl: "../../assets/tiny.png"
 },
 {
     idUser: 2,
     login:"Aloe Verra",
     email: "Gabou@bg.fr",
-    pictureUrl: "../assets/mirana.png"
+    pictureUrl: "../../assets/mirana.png"
 },{
     idUser: 1,
     login:"Gaston Lagafe",
     email: "email@bg.fr",
-    pictureUrl: "../assets/tiny.png"
+    pictureUrl: "../../assets/tiny.png"
 },
 {
     idUser: 2,
     login:"Aloe Verra",
     email: "Gabou@bg.fr",
-    pictureUrl: "../assets/mirana.png"
+    pictureUrl: "../../assets/mirana.png"
 },{
     idUser: 1,
     login:"Gaston Lagafe",
     email: "email@bg.fr",
-    pictureUrl: "../assets/tiny.png"
+    pictureUrl: "../../assets/tiny.png"
 },
 {
     idUser: 2,
     login:"Aloe Verra",
     email: "Gabou@bg.fr",
-    pictureUrl: "../assets/mirana.png"
+    pictureUrl: "../../assets/mirana.png"
 }]
 
 const usersApi :Ref<User[]> = ref([{
     idUser: 1,
     login:"Gaston Lagafe",
     email: "email@bg.fr",
-    pictureUrl: "../assets/tiny.png"
+    pictureUrl: "../../assets/tiny.png"
 },
 {
     idUser: 2,
     login:"Aloe Verra",
     email: "Gabou@bg.fr",
-    pictureUrl: "../assets/mirana.png"
+    pictureUrl: "../../assets/mirana.png"
 },{
     idUser: 1,
     login:"Gaston Lagafe",
     email: "email@bg.fr",
-    pictureUrl: "../assets/tiny.png"
+    pictureUrl: "../../assets/tiny.png"
 },
 {
     idUser: 2,
     login:"Aloe Verra",
     email: "Gabou@bg.fr",
-    pictureUrl: "../assets/mirana.png"
+    pictureUrl: "../../assets/mirana.png"
 },{
     idUser: 1,
     login:"Gaston Lagafe",
     email: "email@bg.fr",
-    pictureUrl: "../assets/tiny.png"
+    pictureUrl: "../../assets/tiny.png"
 },
 {
     idUser: 2,
     login:"Aloe Verra",
     email: "Gabou@bg.fr",
-    pictureUrl: "../assets/mirana.png"
+    pictureUrl: "../../assets/mirana.png"
 },{
     idUser: 1,
     login:"Gaston Lagafe",
     email: "email@bg.fr",
-    pictureUrl: "../assets/tiny.png"
+    pictureUrl: "../../assets/tiny.png"
 },
 {
     idUser: 2,
     login:"Aloe Verra",
     email: "Gabou@bg.fr",
-    pictureUrl: "../assets/mirana.png"
+    pictureUrl: "../../assets/mirana.png"
 }]);
 
 onMounted(() => {

@@ -21,7 +21,7 @@ import type BlocUserVue from './BlocUser.vue';
         idUser: 1,
         login:"Gaston Lagafe",
         email: "email@bg.fr",
-        pictureUrl: "../assets/tiny.png"
+        pictureUrl: "../../assets/tiny.png"
     });
 
     userApi.value = UserManager.getUserById(idUser);
