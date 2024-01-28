@@ -1,8 +1,9 @@
 
 <script setup lang="ts">
 import type { ItemFamily } from '@/components/class';
-import ItemVue from './BlocItem.vue';
 import type {Item} from '@/components/types';
+import { type Ref, ref } from 'vue';
+import BlocItem from './BlocItem.vue';
 /**
   * Affiche un item ainsi que tous ses enfants sous forme d'un arbre vertical
   */
@@ -12,23 +13,17 @@ const carac = defineProps<{
     generation: number 
 }>();
 
-const item:Item = carac.itemsOrdered.item;
-const childrens:Array<ItemFamily> = carac.itemsOrdered.childrens;
-
 </script>
 
 <template>
-<!-- Affiche l'item -->
-    <div v-if="item!==null" class="verticalHierarchy">
-        <ItemVue :item="item"></ItemVue>
-        <section>
-            <ItemTree v-for="groupItems in childrens" v-bind:key="groupItems.item?.nameItem" :itemsOrdered="groupItems" :generation="generation+1"></ItemTree>
+
+    <div class="verticalHierarchy">
+        <BlocItem :item="itemsOrdered.item"></BlocItem>
+        <section v-if="itemsOrdered.childrens.length!==0">
+            <ItemTree v-for="groupItems in itemsOrdered.childrens" v-bind:key="groupItems.item.nameItem" :itemsOrdered="groupItems" :generation="generation+1"></ItemTree>
         </section>
 
     </div>
-        
-
-
 </template>
 
 <style scoped>

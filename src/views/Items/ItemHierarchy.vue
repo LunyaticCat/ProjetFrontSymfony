@@ -16,47 +16,6 @@ if(typeof(route.params.id)==="string"){
 }
 
 
-/**
- * Affiche un item ainsi que ses enfants en appelant ItemTree.
- * Contient également les fonctions de traitement des données nécessaire à l'affichage de ces items
- */
-
-// let items = ref([
-//   {"id": 1, "nameItem": "Item 1"},
-//   {"id": 2, "nameItem": "Item 2"},
-//   {"id": 3, "nameItem": "Item 3"},
-//   {"id": 4, "nameItem": "Item 4"},
-//   {"id": 5, "nameItem": "Item 5"},
-//   {"id": 6, "nameItem": "Item 6"},
-//   {"id": 7, "nameItem": "Item 7"}
-
-// ]);
-
-// let groupFragments = ref([
-//   {"idGroup": 0, "id": 2},
-//   {"idGroup": 1, "id": 3},
-//   {"idGroup": 2, "id": 4},
-//   {"idGroup": 3, "id": 5},
-//   {"idGroup": 4, "id": 6},
-//   {"idGroup": 5, "id": 7}
-
-
-// ]);
-// let itemGroups = ref([
-//   {"idGroup": 0, "idCraft": 0},
-//   {"idGroup": 1, "idCraft": 0},
-//   {"idGroup": 2, "idCraft": 1},
-//   {"idGroup": 3, "idCraft": 1},
-//   {"idGroup": 4, "idCraft": 1},
-//   {"idGroup": 5, "idCraft": 2}
-// ]);
-
-// let crafts = ref([
-//   {"idCraft": 0, "idResult": 1},
-//   {"idCraft": 1, "idResult": 3},
-//   {"idCraft": 2, "idResult": 2}
-// ]);
-
 let items: Ref<Item[]> = ref([
 ]);
 
@@ -110,25 +69,6 @@ onMounted(() => {
     });
   });
 
-// fetch('https://webinfo.iutmontp.univ-montp2.fr/~campsa/ProjetApiSymfony/public/api/items/'+encodeURI(String(idItemToBuild)))
-//                 .then(reponsehttp => reponsehttp.json())
-//                 .then(reponseJSON => {
-//                     itemsFamily = reponseJSON["hydra:member"];
-//                     try{
-//                       itemsFamily = getItemFamily(ItemManager.getItemById(idItemToBuild));
-//                     } catch(e){
-//                       console.log(e);
-//                     }
-//             });
-
-// console.log(ItemManager.getItemById(idItemToBuild));
-
-// try{
-//   itemsFamily = getItemFamily(ItemManager.getItemById(idItemToBuild));
-// } catch(e){
-//   console.log(e);
-// }
-
 
 /**
  * Converti une donnée reçu de cette forme /~campsa/ProjetApiSymfony/public/api/items/4
@@ -164,7 +104,7 @@ function getItemFamily(item: Item): ItemFamily {
     itemFamily.childrens.push(getItemFamily(childItem));
   }
 
-  console.log(itemFamily);
+
   return itemFamily;
 }
 
@@ -259,13 +199,6 @@ function getMaxNbGeneration(craft: Craft | null): number {
       <div v-if="itemsFamilyApi===null">
         Aucun item à afficher
       </div>
-      <p>
-        Item to build : {{ idItemToBuild }}
-      </p>
-      <p>
-        {{ itemsFamilyApi.item }}
-      </p>
-      
       <ItemTree :itemsOrdered="itemsFamilyApi" :generation="0"></ItemTree>
     </section>
   </main>
