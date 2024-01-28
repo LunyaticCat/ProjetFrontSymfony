@@ -53,20 +53,20 @@ export class ItemManager {
      * Si pas de réponse du serveur, renvoie un item de test
      * @param idItem L'identifiant de l'item à demander à l'api
      */
-    public static getItemById(idItem: number): Item{
-        let item : Item = {
-            id : 0,
-            nameItem : "Item Factice"
-        };
+    // public static getItemById(idItem: number): Item{
+    //     let item : Item = {
+    //         id : 0,
+    //         nameItem : "Item Factice"
+    //     };
     
-            fetch('https://webinfo.iutmontp.univ-montp2.fr/~campsa/ProjetApiSymfony/public/api/items/'+encodeURI(String(idItem)))
-                .then(reponsehttp => reponsehttp.json())
-                .then(reponseJSON => {
-                    item = reponseJSON["hydra:member"];
-            });
+    //         fetch('https://webinfo.iutmontp.univ-montp2.fr/~campsa/ProjetApiSymfony/public/api/items/'+encodeURI(String(idItem)))
+    //             .then(reponsehttp => reponsehttp.json())
+    //             .then(reponseJSON => {
+    //                 item = reponseJSON["hydra:member"];
+    //         });
     
-            return item;
-        } 
+    //         return item;
+    //     } 
 }
 
 /**

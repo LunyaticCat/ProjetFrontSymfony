@@ -12,16 +12,16 @@ export interface User {
 
 
 export interface ItemGroup{
-    idGroup: number;
+    id: number;
     idCraft: number;
 }
 
 export interface Craft{
-    idCraft: number;
+    id: number;
     idResult: number;
 }
 
 export interface GroupFragment{
     idGroup: number;
-    id: number;
+    idItem: number;
 }

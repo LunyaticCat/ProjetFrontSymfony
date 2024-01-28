@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Item } from '@/components/types';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, type Ref } from 'vue';
 import BlocItem from './BlocItem.vue';
 
 
@@ -8,7 +8,7 @@ import BlocItem from './BlocItem.vue';
  * Affiche tous les items
  */
 
- const itemsApi = ref([{
+ const itemsApi: Ref<Item[]> = ref([{
     id: 1,
     nameItem: "Item factice"
  },
