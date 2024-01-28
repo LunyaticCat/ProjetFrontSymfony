@@ -4,6 +4,7 @@ import ItemHierarchy from '@/views/Items/ItemHierarchy.vue'
 import User from '@/views/Users/BlocUser.vue';
 import Login from '@/views/Users/Login.vue';
 import AllItem from '@/views/Items/AllItems.vue';
+import Register from '@/views/Users/Register.vue';
 
 const router = createRouter({
     history: createWebHistory(''),
@@ -32,6 +33,11 @@ const router = createRouter({
             path: "/allitems",
             name: "allitems",
             component: AllItem
+        },
+        {
+            path: "/register",
+            name: "register",
+            component: Register
         }
     ]
 })

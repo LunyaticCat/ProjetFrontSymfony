@@ -14,7 +14,7 @@
 <template>
  <div class="wrapper">
     <div class="top">
-      <h3>Création du profil</h3>
+      <h3>Connection</h3>
     </div>
 
     <form  @submit.prevent="authentificationToken.connexion(connectingUser.login, connectingUser.password, ()=>{console.log('succes');}, ()=>{console.log('echec')})" class="content">

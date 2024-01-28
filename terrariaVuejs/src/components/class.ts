@@ -60,7 +60,26 @@ export class UserManager {
         return user;
     } 
 
-
+/**
+ * Demande la création d'un utilisateur
+ */
+    static register(login:string, password: string, email: string, pictureUrl: string){
+        fetch("https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/users", {
+            method: "POST",  
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({login: login, password: password, email: email, pictureUrl: pictureUrl}),
+        }).then(
+            reponsehttp =>    {
+                if(reponsehttp.status !== 200){
+                    console.log("c'est un echec !");
+                }else{
+                    console.log("c'est une réussite !");
+                }  
+            }                 
+        );
+    }
 }
 
 /**

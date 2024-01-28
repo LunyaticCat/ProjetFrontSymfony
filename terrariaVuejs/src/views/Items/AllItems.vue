@@ -10,11 +10,11 @@ import BlocItem from './BlocItem.vue';
 
  const itemsApi = ref([{
     idItem: 1,
-    nameItem: "Item nommé"
+    nameItem: "Item factice"
  },
  {
     idItem: 2,
-    nameItem: "Item deuxième"
+    nameItem: "Item factice"
  }]);
 
  onMounted(() => {
