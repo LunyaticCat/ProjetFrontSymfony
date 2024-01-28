@@ -33,16 +33,13 @@ export class UserManager {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({login: login, password: password, email: email, pictureUrl: pictureUrl}),
-        }).then(
-            reponsehttp =>    {
-                if(reponsehttp.status !== 200){
-                    console.log("c'est un echec !");
-                }else{
-                    console.log("c'est une réussite !");
-                }  
-            }                 
-        );
+            body: JSON.stringify({login: login, plainPassword: password, email: email, pictureUrl: pictureUrl}),
+        }).then(reponsehttp => {
+            reponsehttp.json().then(reponseJson => {
+                if(reponsehttp.status == 201) alert("Utilisateur créé !");
+                else alert(reponseJson["hydra:description"]);
+            })
+        })
     }
 }
 

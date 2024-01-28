@@ -17,7 +17,7 @@
       <h3>Connection</h3>
     </div>
 
-    <form  @submit.prevent="authentificationToken.connexion(connectingUser.login, connectingUser.password, ()=>{console.log('succes');}, ()=>{console.log('echec')})" class="content">
+    <form  @submit.prevent="authentificationToken.connexion(connectingUser.login, connectingUser.password)" class="content">
         <div class="group">
             <label>Login</label>
             <input v-model="connectingUser.login" >
