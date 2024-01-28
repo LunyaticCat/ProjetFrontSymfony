@@ -27,7 +27,7 @@ import BlocItem from './BlocItem.vue';
 </script>
 
 <template>
-  <section>
+  <section class="item-wrapper">
     <div v-for="item in itemsApi" :key="item.idItem">
       <BlocItem v-bind:item=item></BlocItem>
     </div>
