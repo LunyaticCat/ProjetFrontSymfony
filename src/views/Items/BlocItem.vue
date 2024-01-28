@@ -20,11 +20,11 @@ const carac = defineProps<{
 
     <div id="item">
         <div>
-           {{ item?.idItem }}
+           {{ item?.id }}
             
         </div>
         <div>
-          <a @click="router.push('/itemhierarchy/'+item?.idItem)">{{ item?.nameItem }}</a>
+          <a @click="router.push('/itemhierarchy/'+item?.id)">{{ item?.nameItem }}</a>
         </div>
       </div>
 

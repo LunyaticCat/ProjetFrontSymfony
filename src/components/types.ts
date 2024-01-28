@@ -1,5 +1,5 @@
 export type Item = {
-    idItem: number;
+    id: number;
     nameItem: string;
 } | null;
 
@@ -23,5 +23,5 @@ export interface Craft{
 
 export interface GroupFragment{
     idGroup: number;
-    idItem: number;
+    id: number;
 }
