@@ -57,7 +57,7 @@ let crafts = ref([
 ]);
 
 let itemsFamily: ItemFamily;
-fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/items/'+encodeURI(String(idItemToBuild)))
+fetch('https://webinfo.iutmontp.univ-montp2.fr/~campsa/ProjetApiSymfony/public/api/items/'+encodeURI(String(idItemToBuild)))
                 .then(reponsehttp => reponsehttp.json())
                 .then(reponseJSON => {
                     itemsFamily = reponseJSON["hydra:member"];

@@ -28,7 +28,7 @@ export class UserManager {
  */
     static register(login:string, password: string, email: string){
         let pictureUrl = Md5.hashStr(email);
-        fetch("https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/users", {
+        fetch("https://webinfo.iutmontp.univ-montp2.fr/~campsa/ProjetApiSymfony/public/api/users", {
             method: "POST",  
             headers: {
                 'Content-Type': 'application/json'
@@ -62,7 +62,7 @@ export class ItemManager {
             nameItem : "Item Factice"
         };
     
-            fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/items/'+encodeURI(String(idItem)))
+            fetch('https://webinfo.iutmontp.univ-montp2.fr/~campsa/ProjetApiSymfony/public/api/items/'+encodeURI(String(idItem)))
                 .then(reponsehttp => reponsehttp.json())
                 .then(reponseJSON => {
                     item = reponseJSON["hydra:member"];
@@ -84,7 +84,7 @@ export class GroupFragmentManager {
     static getAllGroupFragment(): GroupFragment[] {
      let groupFragments : GroupFragment[] = [];
  
-     fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/group_fragments')
+     fetch('https://webinfo.iutmontp.univ-montp2.fr/~campsa/ProjetApiSymfony/public/api/group_fragments')
          .then(reponsehttp => reponsehttp.json())
          .then(reponseJSON => {
             groupFragments = reponseJSON["hydra:member"];
@@ -106,7 +106,7 @@ export class ItemGroupManager {
     static getAllItemGroups(): ItemGroup[] {
      let itemGroups : ItemGroup[] = [];
  
-     fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/item_groups')
+     fetch('https://webinfo.iutmontp.univ-montp2.fr/~campsa/ProjetApiSymfony/public/api/item_groups')
          .then(reponsehttp => reponsehttp.json())
          .then(reponseJSON => {
             itemGroups = reponseJSON["hydra:member"];
@@ -130,7 +130,7 @@ export class CraftManager {
     static getAllCrafts(): Craft[] {
      let crafts: Craft[] = [];
  
-     fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/crafts')
+     fetch('https://webinfo.iutmontp.univ-montp2.fr/~campsa/ProjetApiSymfony/public/api/crafts')
          .then(reponsehttp => reponsehttp.json())
          .then(reponseJSON => {
             crafts = reponseJSON["hydra:member"];
@@ -146,7 +146,7 @@ export class CraftManager {
      * @param idCreator Facultatif : l'identifiant de l'utilisateur qui l'a créé
      */
     static createCraft(idResult: number, idCreator: number|null){
-        fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/crafts', {
+        fetch('https://webinfo.iutmontp.univ-montp2.fr/~campsa/ProjetApiSymfony/public/api/crafts', {
             method: "POST",  
             headers: {
                 'Content-Type': 'application/json',

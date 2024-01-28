@@ -23,7 +23,7 @@ const usersApi :Ref<User[]> = ref([{
 }]);
 
 onMounted(() => {
-    fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/users')    
+    fetch('https://webinfo.iutmontp.univ-montp2.fr/~campsa/ProjetApiSymfony/public/api/users')    
     .then(reponsehttp => reponsehttp.json())
     .then(reponseJSON => {
         usersApi.value = reponseJSON["hydra:member"];

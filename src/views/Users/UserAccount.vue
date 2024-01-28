@@ -25,7 +25,7 @@ import type BlocUserVue from './BlocUser.vue';
     });
 
 
-        fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/user/'+encodeURI(String(idUser)))
+        fetch('https://webinfo.iutmontp.univ-montp2.fr/~campsa/ProjetApiSymfony/public/api/user/'+encodeURI(String(idUser)))
             .then(reponsehttp => reponsehttp.json())
             .then(reponseJSON => {
                 userApi.value = reponseJSON["hydra:member"];

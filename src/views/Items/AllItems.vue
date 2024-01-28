@@ -18,7 +18,7 @@ import BlocItem from './BlocItem.vue';
  }]);
 
  onMounted(() => {
-  fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/items')
+  fetch('https://webinfo.iutmontp.univ-montp2.fr/~campsa/ProjetApiSymfony/public/api/items')
     .then(reponsehttp => reponsehttp.json())
     .then(reponseJSON => {
       itemsApi.value = reponseJSON["hydra:member"];

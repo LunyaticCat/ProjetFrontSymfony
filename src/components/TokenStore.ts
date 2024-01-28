@@ -8,7 +8,7 @@ export const authentificationToken = reactive({
     },
     connexion(login: string, motDePasse: string, succes:()=>void, echec:()=>void): void{
         function connect():void{
-            fetch("https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/auth", {
+            fetch("https://webinfo.iutmontp.univ-montp2.fr/~campsa/ProjetApiSymfony/public/api/auth", {
             method: "POST",  
             headers: {
                 'Content-Type': 'application/json'
