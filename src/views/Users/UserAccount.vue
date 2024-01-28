@@ -24,7 +24,13 @@ import type BlocUserVue from './BlocUser.vue';
         pictureUrl: "../../assets/tiny.png"
     });
 
-    userApi.value = UserManager.getUserById(idUser);
+
+        fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/user/'+encodeURI(String(idUser)))
+            .then(reponsehttp => reponsehttp.json())
+            .then(reponseJSON => {
+                userApi.value = reponseJSON["hydra:member"];
+                userApi.value.pictureUrl = "https://webinfo.iutmontp.univ-montp2.fr/~pujadej/ProjetWebSymphonyMyAvatar/public/avatar/" + encodeURI(userApi.value.pictureUrl);
+        });
     
 
 

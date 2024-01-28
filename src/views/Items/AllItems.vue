@@ -9,11 +9,11 @@ import BlocItem from './BlocItem.vue';
  */
 
  const itemsApi = ref([{
-    idItem: 1,
+    id: 1,
     nameItem: "Item factice"
  },
  {
-    idItem: 2,
+    id: 2,
     nameItem: "Item factice"
  }]);
 
@@ -28,7 +28,7 @@ import BlocItem from './BlocItem.vue';
 
 <template>
   <section class="item-wrapper">
-    <div v-for="item in itemsApi" :key="item.idItem">
+    <div v-for="item in itemsApi" :key="item.id">
       <BlocItem v-bind:item=item></BlocItem>
     </div>
   </section>

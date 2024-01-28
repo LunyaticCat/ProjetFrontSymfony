@@ -21,23 +21,23 @@ if(typeof(route.params.id)==="string"){
  */
 
 let items = ref([
-  {"idItem": 1, "nameItem": "Item 1"},
-  {"idItem": 2, "nameItem": "Item 2"},
-  {"idItem": 3, "nameItem": "Item 3"},
-  {"idItem": 4, "nameItem": "Item 4"},
-  {"idItem": 5, "nameItem": "Item 5"},
-  {"idItem": 6, "nameItem": "Item 6"},
-  {"idItem": 7, "nameItem": "Item 7"}
+  {"id": 1, "nameItem": "Item 1"},
+  {"id": 2, "nameItem": "Item 2"},
+  {"id": 3, "nameItem": "Item 3"},
+  {"id": 4, "nameItem": "Item 4"},
+  {"id": 5, "nameItem": "Item 5"},
+  {"id": 6, "nameItem": "Item 6"},
+  {"id": 7, "nameItem": "Item 7"}
 
 ]);
 
 let groupFragments = ref([
-  {"idGroup": 0, "idItem": 2},
-  {"idGroup": 1, "idItem": 3},
-  {"idGroup": 2, "idItem": 4},
-  {"idGroup": 3, "idItem": 5},
-  {"idGroup": 4, "idItem": 6},
-  {"idGroup": 5, "idItem": 7}
+  {"idGroup": 0, "id": 2},
+  {"idGroup": 1, "id": 3},
+  {"idGroup": 2, "id": 4},
+  {"idGroup": 3, "id": 5},
+  {"idGroup": 4, "id": 6},
+  {"idGroup": 5, "id": 7}
 
 
 ]);
@@ -57,13 +57,24 @@ let crafts = ref([
 ]);
 
 let itemsFamily: ItemFamily;
-console.log(ItemManager.getItemById(idItemToBuild));
+fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/items/'+encodeURI(String(idItemToBuild)))
+                .then(reponsehttp => reponsehttp.json())
+                .then(reponseJSON => {
+                    itemsFamily = reponseJSON["hydra:member"];
+                    try{
+                      itemsFamily = getItemFamily(ItemManager.getItemById(idItemToBuild));
+                    } catch(e){
+                      console.log(e);
+                    }
+            });
 
-try{
-  itemsFamily = getItemFamily(ItemManager.getItemById(idItemToBuild));
-} catch(e){
-  console.log(e);
-}
+// console.log(ItemManager.getItemById(idItemToBuild));
+
+// try{
+//   itemsFamily = getItemFamily(ItemManager.getItemById(idItemToBuild));
+// } catch(e){
+//   console.log(e);
+// }
 
 
 /**
@@ -78,7 +89,7 @@ function getItemFamily(item: Item): ItemFamily {
   new Array<ItemFamily>();
 
   //On récupère le craft lié à l'item
-  let craft = getCraftOfItem(item.idItem);
+  let craft = getCraftOfItem(item.id);
 
   //On va chercher les parents du craft
   if (craft === null) {
@@ -87,7 +98,7 @@ function getItemFamily(item: Item): ItemFamily {
   let groups = getGroupsFromCraft(craft);
 
   for (let group in groups) {
-    const childItem = getFirstItemFromGroup(groups[group]);
+    const childItem = getFirstItemFromGroup(groups[group]); //TODO Ajouter la prise en charge des 'OU'
     itemFamily.childrens.push(getItemFamily(childItem));
   }
 
@@ -134,7 +145,7 @@ function getFragmentFromGroup(group: ItemGroup): Array<GroupFragment> {
  */
 function getItemFromFragment(fragment: GroupFragment): Item {
   for (let i = 0; i < items.value.length; i++) {
-    if (items.value[i].idItem === fragment.idItem) {
+    if (items.value[i].id === fragment.id) {
       return items.value[i];
     }
   }
@@ -154,7 +165,7 @@ function getFirstItemFromGroup(group: ItemGroup): Item {
  * Return the craft that make the item
  * @param itemId the id of the item
  */
-function getCraftOfItem(itemId: number): Craft | null {
+function getCraftOfItem(itemId: number): Craft | null { //TODO : enlever le OU NULL
 
   for (let i = 0; i < crafts.value.length; i++) {
     if (crafts.value[i].idResult == itemId) {

@@ -22,27 +22,6 @@ export class UserManager {
 
 
 
-    /**
-     *
-     * @param idUser l'identifiant de l'utilisateur en base de donnée
-     * @returns Un utilisateur
-     */
-    static getUserById(idUser: number): User {
-        let user : User = {
-            idUser: 0,
-            login:"Utilisateur factice",
-            email: "rien@rien.fr",
-            pictureUrl: "../../assets/tiny.png"
-        };
-
-        fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/user/'+encodeURI(String(idUser)))
-            .then(reponsehttp => reponsehttp.json())
-            .then(reponseJSON => {
-                user = reponseJSON["hydra:member"];
-                user.pictureUrl = "https://webinfo.iutmontp.univ-montp2.fr/~pujadej/ProjetWebSymphonyMyAvatar/public/avatar/" + user.pictureUrl;
-        });
-        return user;
-    } 
 
 /**
  * Demande la création d'un utilisateur
@@ -71,8 +50,6 @@ export class UserManager {
  * Gère les appels à l'API pour les items
  */
 export class ItemManager {
-
-
     /**
      * Demande à l'API un item par son identifiant en bd
      * Attention, prévoir la latence de l'appel
@@ -81,7 +58,7 @@ export class ItemManager {
      */
     public static getItemById(idItem: number): Item{
         let item : Item = {
-            idItem : 0,
+            id : 0,
             nameItem : "Item Factice"
         };
     
@@ -93,7 +70,6 @@ export class ItemManager {
     
             return item;
         } 
-
 }
 
 /**
