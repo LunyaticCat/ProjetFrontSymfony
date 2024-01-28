@@ -18,7 +18,7 @@ const router = useRouter();
         <img src="../assets/logo.png" alt="logo" class="logo">
         <nav>
         <a @click="router.push('/allusers')">All Users</a>
-        <a @click="router.push('/itemhierarchy')">Item Hierarchy</a>
+        <a @click="router.push('/allitems')">All items</a>
         <a v-if="!authentificationToken.isDefine()" @click="router.push('/login')">Login</a>
         <a v-if="authentificationToken.isDefine()" @click="router.push('/user')">My Account</a>
     </nav>

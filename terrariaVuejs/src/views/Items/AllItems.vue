@@ -29,7 +29,7 @@ import BlocItem from './BlocItem.vue';
 <template>
   <section>
     <div v-for="item in itemsApi" :key="item.idItem">
-      <BlocItem v-bind:idItem=item.idItem></BlocItem>
+      <BlocItem v-bind:item=item></BlocItem>
     </div>
   </section>
 

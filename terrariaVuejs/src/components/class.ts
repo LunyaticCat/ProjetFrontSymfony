@@ -43,11 +43,11 @@ export class UserManager {
      * @param id l'identifiant de l'utilisateur en base de donnée
      * @returns Un utilisateur
      */
-    static getUsersById(idUser: number): User {
+    static getUserById(idUser: number): User {
         let user : User = {
-            idUser: 1,
-            login:"Gaston Lagafe",
-            email: "email@bg.fr",
+            idUser: 0,
+            login:"Utilisateur factice",
+            email: "rien@rien.fr",
             pictureUrl: "../assets/tiny.png"
         };
 
@@ -89,12 +89,13 @@ export class ItemManager {
     /**
      * Demande à l'API un item par son identifiant en bd
      * Attention, prévoir la latence de l'appel
+     * Si pas de réponse du serveur, renvoie un item de test
      * @param idItem L'identifiant de l'item à demander à l'api
      */
     public static getItemById(idItem: number): Item{
         let item : Item = {
-            idItem : 1,
-            nameItem : "The One Ring"
+            idItem : 0,
+            nameItem : "Item Factice"
         };
     
             fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/item/'+encodeURI(String(idItem)))

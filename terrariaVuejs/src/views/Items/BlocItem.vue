@@ -1,11 +1,15 @@
 <script setup lang="ts">
+import type { Item } from '@/components/types';
+import {useRouter} from 'vue-router';
+const router = useRouter();
+
 
 /**
  * Affiche un item
  */
 
 const carac = defineProps<{
-  idItem: number
+  item: Item
 }>();
 
 
@@ -16,7 +20,11 @@ const carac = defineProps<{
 
     <div id="item">
         <div>
-            Voici l'item numéro {{ idItem }}
+           {{ item?.idItem }}
+            
+        </div>
+        <div>
+          <a @click="router.push('/itemhierarchy/'+item?.idItem)">{{ item?.nameItem }}</a>
         </div>
       </div>
 
@@ -32,6 +40,11 @@ const carac = defineProps<{
     width: 100px;
     padding: 10px 0 10px 0;
     margin: 5px;
+    text-align: center;
+}
+
+a{
+  color: blue;
 }
 
 

@@ -3,6 +3,7 @@ import AllUsers from '@/views/Users/AllUsers.vue'
 import ItemHierarchy from '@/views/Items/ItemHierarchy.vue'
 import User from '@/views/Users/BlocUser.vue';
 import Login from '@/views/Users/Login.vue';
+import AllItem from '@/views/Items/AllItems.vue';
 
 const router = createRouter({
     history: createWebHistory(''),
@@ -13,12 +14,12 @@ const router = createRouter({
             component: AllUsers
         },
         {
-            path: '/itemhierarchy',
+            path: '/itemhierarchy/:id',
             name: "itemhierarchy",
             component: ItemHierarchy
         },
         {
-            path: '/user/{index}',
+            path: '/user/:id',
             name: 'user',
             component: User
         },
@@ -26,6 +27,11 @@ const router = createRouter({
             path: '/login',
             name: 'login',
             component: Login
+        },
+        {
+            path: "/allitems",
+            name: "allitems",
+            component: AllItem
         }
     ]
 })

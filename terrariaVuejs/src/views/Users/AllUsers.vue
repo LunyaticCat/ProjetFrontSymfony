@@ -110,8 +110,7 @@ onMounted(() => {
 <template>
     <section>
         <div v-for="user in usersApi" :key="user.idUser">
-            <BlocUser v-bind:login="user.login" v-bind:email="user.email" 
-            v-bind:picture-url="user.pictureUrl"></BlocUser>
+            <BlocUser v-bind:user=user></BlocUser>
         </div>
     </section>
 </template>
