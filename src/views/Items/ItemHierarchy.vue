@@ -87,7 +87,7 @@ function getItemFamily(item: Item): ItemFamily {
   let groups = getGroupsFromCraft(craft);
 
   for (let group in groups) {
-    const childItem = getFirstItemFromGroup(groups[group]); //TODO Ajouter la prise en charge des 'OU'
+    const childItem = getFirstItemFromGroup(groups[group]);
     itemFamily.childrens.push(getItemFamily(childItem));
   }
 
@@ -154,7 +154,7 @@ function getFirstItemFromGroup(group: ItemGroup): Item {
  * Return the craft that make the item
  * @param itemId the id of the item
  */
-function getCraftOfItem(itemId: number): Craft | null { //TODO : enlever le OU NULL
+function getCraftOfItem(itemId: number): Craft | null {
 
   for (let i = 0; i < crafts.value.length; i++) {
     if (crafts.value[i].idResult == itemId) {

@@ -85,7 +85,7 @@ export class ItemManager {
             nameItem : "Item Factice"
         };
     
-            fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/item/'+encodeURI(String(idItem)))
+            fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/items/'+encodeURI(String(idItem)))
                 .then(reponsehttp => reponsehttp.json())
                 .then(reponseJSON => {
                     item = reponseJSON["hydra:member"];
