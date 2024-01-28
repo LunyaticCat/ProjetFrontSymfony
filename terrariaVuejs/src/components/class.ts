@@ -1,5 +1,6 @@
 import type { Craft, GroupFragment, Item, ItemGroup, User } from "./types";
 import {authentificationToken} from '@/components/TokenStore';
+import {Md5} from 'ts-md5';
 
 /**
  * Gère le lien récursif entre les items
@@ -63,7 +64,8 @@ export class UserManager {
 /**
  * Demande la création d'un utilisateur
  */
-    static register(login:string, password: string, email: string, pictureUrl: string){
+    static register(login:string, password: string, email: string){
+        let pictureUrl = Md5.hashStr(email);
         fetch("https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/users", {
             method: "POST",  
             headers: {

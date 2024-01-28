@@ -19,7 +19,7 @@ import { UserManager } from '@/components/class';
       <h3>Création du profil</h3>
     </div>
 
-    <form  @submit.prevent="UserManager.register(registerInfo.login, registerInfo.password, registerInfo.email, registerInfo.pictureUrl)" class="content">
+    <form  @submit.prevent="UserManager.register(registerInfo.login, registerInfo.password, registerInfo.email)" class="content">
         <div class="group">
             <label>Login</label>
             <input v-model="registerInfo.login" >
@@ -31,11 +31,7 @@ import { UserManager } from '@/components/class';
         <div class="group">
             <label>email</label>
             <input v-model="registerInfo.email" >
-        </div> 
-        <div class="group">
-            <label>url image de profil</label>
-            <input v-model="registerInfo.pictureUrl" >
-        </div> 
+        </div>
         <button type="submit">
             s'enregister
         </button>
