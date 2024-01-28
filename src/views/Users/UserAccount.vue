@@ -5,6 +5,7 @@ import type { User } from '@/components/types';
 import { ref, type Ref } from 'vue';
 import { useRoute } from 'vue-router'
 import type BlocUserVue from './BlocUser.vue';
+import BlocUser from "@/views/Users/BlocUser.vue";
 
 
     const route = useRoute()
@@ -21,7 +22,7 @@ import type BlocUserVue from './BlocUser.vue';
         idUser: 1,
         login:"Gaston Lagafe",
         email: "email@bg.fr",
-        pictureUrl: "../../assets/tiny.png"
+        picture_url: "/src/assets/tiny.png"
     });
 
 
@@ -29,9 +30,7 @@ import type BlocUserVue from './BlocUser.vue';
             .then(reponsehttp => reponsehttp.json())
             .then(reponseJSON => {
                 userApi.value = reponseJSON["hydra:member"];
-                userApi.value.pictureUrl = "https://webinfo.iutmontp.univ-montp2.fr/~pujadej/ProjetWebSymphonyMyAvatar/public/avatar/" + encodeURI(userApi.value.pictureUrl);
         });
-    
 
 
 </script>

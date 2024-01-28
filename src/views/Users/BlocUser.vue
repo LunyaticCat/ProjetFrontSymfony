@@ -2,7 +2,7 @@
 <script setup lang="ts">
 import type { User } from '@/components/types';
 import { onMounted, ref } from 'vue';
-
+import {Md5} from 'ts-md5';
 
 /**
  * Affiche un utilisateur avec sa photo et ses infos
@@ -27,7 +27,7 @@ import { onMounted, ref } from 'vue';
         <h1>{{external.user.login}}</h1>
         <div id="userInfo">
 
-        <img src="../../assets/tiny.png">
+        <img :src="'https://webinfo.iutmontp.univ-montp2.fr/~pujadej/ProjetWebSymphonyMyAvatar/public/avatar/'+Md5.hashStr(external.user.email)">
                 <p>{{external.user.email}}</p>
                 <p>L'image est pas défaut, à modifier</p>
                 <p>info 3</p>

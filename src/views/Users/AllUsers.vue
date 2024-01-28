@@ -13,13 +13,13 @@ const usersApi :Ref<User[]> = ref([{
     idUser: 1,
     login:"Gaston Lagafe",
     email: "email@bg.fr",
-    pictureUrl: "../../assets/tiny.png"
+    picture_url: "/src/assets/tiny.png"
 },
 {
     idUser: 2,
     login:"Aloe Verra",
     email: "Gabou@bg.fr",
-    pictureUrl: "../../assets/mirana.png"
+    picture_url: "/src/assets/mirana.png"
 }]);
 
 onMounted(() => {

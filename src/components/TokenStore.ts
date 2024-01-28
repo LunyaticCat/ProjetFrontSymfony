@@ -14,20 +14,6 @@ export const authentificationToken = reactive({
             },
             body: JSON.stringify({login: login, password: motDePasse}),
         })
-        //     .then(
-        //     reponsehttp => {
-        //         console.log(reponsehttp.json());
-        //         console.log(reponsehttp);
-        //
-        //         if (reponsehttp.status !== 201) {
-        //             echec();
-        //         } else {
-        //             reponsehttp.json().then(reponseJSON => {
-        //                 authentificationToken.JWT = reponseJSON["token"];
-        //             })
-        //         }
-        //     }
-        // )
             .then(reponsehttp => {
                 reponsehttp.json().then(reponseJson => {
                     if(reponsehttp.status == 200) {
