@@ -23,23 +23,6 @@ export class UserManager {
 
 
     /**
-     * Demande à l'API la liste des utilisateurs
-     * Attention, prévoir la latence de l'appel
-     * @returns Une liste contenant tous les utilisateurs de l'API
-     */
-     static getAllUsers(): User[] {
-        let users : User[] = [];
-
-        fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/users')
-            .then(reponsehttp => reponsehttp.json())
-            .then(reponseJSON => {
-                users = reponseJSON["hydra:member"];
-        });
-
-        return users;
-    } 
-
-    /**
      *
      * @param idUser l'identifiant de l'utilisateur en base de donnée
      * @returns Un utilisateur
@@ -89,23 +72,6 @@ export class UserManager {
  */
 export class ItemManager {
 
-
-   /**
-     * Demande à l'API la liste des items
-     * Attention, prévoir la latence de l'appel
-     * @returns Une liste contenant tous les utilisateurs de l'API
-     */
-   static getAllItems(): Item[] {
-    let items : Item[] = [];
-
-    fetch('https://webinfo.iutmontp.univ-montp2.fr/~bruny/ApiProjet/public/api/items')
-        .then(reponsehttp => reponsehttp.json())
-        .then(reponseJSON => {
-            items = reponseJSON["hydra:member"];
-    });
-
-    return items;
-} 
 
     /**
      * Demande à l'API un item par son identifiant en bd
