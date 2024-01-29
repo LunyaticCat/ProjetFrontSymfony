@@ -22,15 +22,15 @@ import { UserManager } from '@/components/class';
     <form  @submit.prevent="UserManager.register(registerInfo.login, registerInfo.password, registerInfo.email)" class="content">
         <div class="group">
             <label>Login</label>
-            <input v-model="registerInfo.login" >
+            <input v-model="registerInfo.login" id="login">
         </div> 
         <div class="group">
             <label>Mot de passe</label>
-            <input type="password" v-model="registerInfo.password" > 
+            <input type="password" id="password" v-model="registerInfo.password" > 
         </div> 
         <div class="group">
             <label>email</label>
-            <input v-model="registerInfo.email" >
+            <input type="email" id="email" v-model="registerInfo.email" >
         </div>
         <button type="submit">
             s'enregister
