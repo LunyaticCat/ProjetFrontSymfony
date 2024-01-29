@@ -29,8 +29,6 @@ import {Md5} from 'ts-md5';
 
         <img :src="'https://webinfo.iutmontp.univ-montp2.fr/~pujadej/ProjetWebSymphonyMyAvatar/public/avatar/'+Md5.hashStr(external.user.email)">
                 <p>{{external.user.email}}</p>
-                <p>L'image est pas défaut, à modifier</p>
-                <p>info 3</p>
             
         </div>
     </div>

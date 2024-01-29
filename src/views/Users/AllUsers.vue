@@ -10,13 +10,13 @@ import type { User } from '@/components/types';
 
 
 const usersApi :Ref<User[]> = ref([{
-    idUser: 1,
+    id: 1,
     login:"Gaston Lagafe",
     email: "email@bg.fr",
     picture_url: "/src/assets/tiny.png"
 },
 {
-    idUser: 2,
+    id: 2,
     login:"Aloe Verra",
     email: "Gabou@bg.fr",
     picture_url: "/src/assets/mirana.png"
@@ -34,7 +34,7 @@ onMounted(() => {
 
 <template>
     <section>
-        <div v-for="user in usersApi" :key="user.idUser">
+        <div v-for="user in usersApi" :key="user.id">
             <BlocUser v-bind:user=user></BlocUser>
         </div>
     </section>

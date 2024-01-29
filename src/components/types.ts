@@ -4,7 +4,7 @@ export type Item = {
 } | null;
 
 export interface User {
-    idUser: number;
+    id: number;
     login: string;
     email: string;
     picture_url: string;

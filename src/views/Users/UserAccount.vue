@@ -9,24 +9,24 @@ import BlocUser from "@/views/Users/BlocUser.vue";
 
 
     const route = useRoute()
-    let idUser: number;
+    let id: number;
     //Conversion car mon id est un number et que les url parametres sont soit des string soit des string[]
     if(typeof(route.params.id)==="string"){
-    idUser = parseInt(route.params.id);
+    id = parseInt(route.params.id);
     } else{
-    idUser = parseInt(route.params.id[0]);
+    id = parseInt(route.params.id[0]);
 }
 
 
     const userApi: Ref<User> = ref({
-        idUser: 1,
+        id: 1,
         login:"Gaston Lagafe",
         email: "email@bg.fr",
         picture_url: "/src/assets/tiny.png"
     });
 
 
-        fetch('https://webinfo.iutmontp.univ-montp2.fr/~campsa/ProjetApiSymfony/public/api/user/'+encodeURI(String(idUser)))
+        fetch('https://webinfo.iutmontp.univ-montp2.fr/~campsa/ProjetApiSymfony/public/api/user/'+encodeURI(String(id)))
             .then(reponsehttp => reponsehttp.json())
             .then(reponseJSON => {
                 userApi.value = reponseJSON["hydra:member"];
